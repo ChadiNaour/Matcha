@@ -2,9 +2,9 @@ import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import * as Core from "@material-ui/core";
 // import * as Icons from '@material-ui/icons';
-import Infos from "./infos";
+import Infos from "../../containers//completeprofile/infos";
 import Localisation from "./localisation";
-import Photos from "./upload";
+import Photos from "../../containers/completeprofile/upload";
 import SettingsIcon from "@material-ui/icons/Settings";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import VideoLabelIcon from "@material-ui/icons/VideoLabel";
@@ -37,8 +37,8 @@ const useStyles = makeStyles({
     height: 35,
     display: "flex",
     borderRadius: "50%",
-    // justifyContent: "center",
-    // alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center",
   },
   active: {
     backgroundImage: "linear-gradient(15deg, #174F70 30%, #11878D 70%)",
@@ -100,7 +100,7 @@ const ColorlibConnector = withStyles({
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <Photos />;
+      return <Infos />;
     case 1:
       return <Photos />;
     case 2:
@@ -112,7 +112,8 @@ function getStepContent(step) {
 function getSteps() {
   return ["Infos", "Photos", "Localisation"];
 }
-const Profile = () => {
+const Profile = (props) => {
+  const {user,images} = props;
   const classes = loool();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();

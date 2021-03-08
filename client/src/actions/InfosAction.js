@@ -1,39 +1,47 @@
-export const INFOS_USER = "INFOS_USER";
+export const GET_TAGS = "GET_TAGS";
+export const GET_TAGS_SUCCESS = "GET_TAGS_SUCCESS";
+export const STEP_1_INFO = "STEP_1_INFO";
+export const STEP_1_INFO_SUCCESS = "ADD_INFO_SUCCESS";
+export const STEP_1_INFO_ERROR = "ADD_INFO_ERROR";
+export const GET_STEP_3_LOCATION = "GET_STEP_3_LOCATION";
+export const STEP_3_LOCATION = "STEP_3_LOCATION"
+export const STEP_3_LOCATION_SUCCESS = "STEP_3_LOCATION_SUCCESS";
 
-export const INFOS_USER_SUCCESS = "INFOS_USER_SUCCESS";
-
-export const INFOS_USER_ERROR = "INFOS_USER_ERROR";
-
-export const EMAIL_CONFIRMATION = "EMAIL_CONFIRMATION";
-
-export const EMAIL_CONFIRMATION_SUCCESS = "EMAIL_CONFIRMATION_SUCCESS";
-
-export const EMAIL_CONFIRMATION_ERROR = "EMAIL_CONFIRMATION_ERROR";
-
-export const InfosAction = (dataInsc) => ({
-  "type": INFOS_USER,
-  "data": dataInsc
+export const getTags= () => ({
+  "type": GET_TAGS
 });
 
-export const InfosUserSuccess = (data) => ({
-    "type": INFOS_USER_SUCCESS,
-    data
+export const getTagsSuccess = (options) => ({
+    "type": GET_TAGS_SUCCESS,
+    options
 });
 
-export const InfosError = (error) => ({
-    "type": INFOS_USER_ERROR,
-    error
+export const step1info = (data, id) => ({
+  "type": STEP_1_INFO,
+  "data": data,
+  "id": id,
 });
 
-export const EmailConfirmationAction = (token) => ({
-  "type": EMAIL_CONFIRMATION,
-  'token': token
+export const step1infoSuccess = (info) => ({
+  "type": STEP_1_INFO_SUCCESS,
+  "info": info
 });
 
-export const EmailConfirmationSuccess = () => ({
-    "type": EMAIL_CONFIRMATION_SUCCESS,
+export const step1infoError = (error) => ({             
+  "type": STEP_1_INFO_ERROR,
+  error
 });
 
-export const EmailConfirmationError = () => ({
-    "type": EMAIL_CONFIRMATION_ERROR,
+export const get_location = () => ({
+  "type": GET_STEP_3_LOCATION,
+});
+
+export const add_Location = (localisation) => ({
+  "type": STEP_3_LOCATION,
+  localisation
+});
+
+export const add_LocationSuccess = (localisation) => ({
+  "type": STEP_3_LOCATION_SUCCESS,
+  localisation
 });

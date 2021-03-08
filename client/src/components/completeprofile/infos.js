@@ -1,10 +1,10 @@
 import React from "react";
-// import {Field} from 'redux-form';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Core from "@material-ui/core";
 import { Field } from "redux-form";
-import renderField from "../commun/TextField";
+import renderField from '../commun/TextField';
+import RadioGroup from '../commun/RadioGroup';
 // import * as Icons from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,8 +34,10 @@ const useStyles = makeStyles((theme) => ({
 //         />
 //   )
 
-const Infos = () => {
+const Infos = (props) => {
   const classes = useStyles();
+  const { handleSubmit} = props;
+
   return (
     <>
       <div style={{ width: "100%", height: "100%" }}>
@@ -47,16 +49,11 @@ const Infos = () => {
               <Core.RadioGroup
               >
                 <div>
-                  <Core.FormControlLabel
-                    value="Male"
-                    control={<Core.Radio />}
-                    label="Male"
-                  />
-                  <Core.FormControlLabel
-                    value="Female"
-                    control={<Core.Radio />}
-                    label="Female"
-                  />
+                <Field component={RadioGroup} name="gender" required={true} options={[
+                    { title: 'Male', value: 'male' },
+                    { title: 'Female', value: 'female' }
+                  ]}
+              />
                 </div>
               </Core.RadioGroup>
             </Core.Grid>
@@ -65,21 +62,12 @@ const Infos = () => {
               <Core.RadioGroup
               >
                 <div>
-                  <Core.FormControlLabel
-                    value="Men"
-                    control={<Core.Radio />}
-                    label="Men"
-                  />
-                  <Core.FormControlLabel
-                    value="Women"
-                    control={<Core.Radio />}
-                    label="Women"
-                  />
-                  <Core.FormControlLabel
-                    value="Both"
-                    control={<Core.Radio />}
-                    label="Both"
-                  />
+                <Field component={RadioGroup} name="Sexual_orientation" required={true} options={[
+                    { title:  'Men ' , value: 'men'  },
+                    { title:  'Women', value: 'women'},
+                    { title:  'Both' , value: 'both' }
+                  ]}
+              />
                 </div>
               </Core.RadioGroup>
             </Core.Grid>
@@ -87,11 +75,12 @@ const Infos = () => {
               <Core.FormLabel component="legend">Birthday</Core.FormLabel>
             </Core.Grid>
             <Core.Grid item xs={12}>
-              <Core.TextField
+              <Field
                 id="date"
+                name="date_birthday"
                 label="Birthday"
+                component={renderField}
                 type="date"
-                defaultValue="2017-05-24"
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -102,19 +91,17 @@ const Infos = () => {
                 <Field name='interests'/>
               </Core.Grid> */}
             <Core.Grid item xs={12}>
-            <Core.FormLabel component="legend">Bio</Core.FormLabel>
+              <Core.FormLabel component="legend">Bio</Core.FormLabel>
               <Field
-                style={{width: "15%"}}
-                name="bio"
+                name="biography"
                 component={renderField}
                 type = "text"
                 rows='4'
                 variant='outlined'
               />
             </Core.Grid>
-            <Core.Grid item xs={12}></Core.Grid>
-            <Core.Grid item container justify='center' xs={1}>
-                <Core.Button className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Done</Core.Button>
+              <Core.Grid>
+                <Core.Button onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Next</Core.Button>
               </Core.Grid>
           </Core.Grid>
         </form>

@@ -10,7 +10,6 @@ import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import renderField from '../commun/TextField';
 import logo from '../../image/logo.png';
-import Flashmsg from '../commun/flash';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -32,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(0, 0, 1),
-    background: 'linear-gradient(15deg, #174F70 30%, #11878D 70%)',
+    backgroundColor: '#11888e',
     justifyContent: 'center',
     width: "90%"
   },
@@ -73,8 +72,8 @@ const ResetPassword = (props) => {
     return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-    {resetPasswordStatus === "success" && <Flashmsg variant="success" msg={['Your password has been reset successfully! You will be redirected to login']}/>}
-    {resetPasswordStatus === "error" && resetError && <Flashmsg variant="error" msg={[resetError+' You will be redirected to login']}/>}
+    {resetPasswordStatus === "success"}
+    {resetPasswordStatus === "error" && resetError}
     {status !== "loading" &&
     <div className={classes.paper}>
         <Avatar variant="rounded" className={classes.avatar} src={logo} />
