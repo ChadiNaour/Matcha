@@ -1,4 +1,4 @@
-import {applyMiddleware, createStore} from "redux";
+import {applyMiddleware, compose, createStore} from "redux";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
 import rootReducer from "./reducers";
@@ -12,17 +12,18 @@ export const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
-  "key": "use-app",
+  key: "matcha",
   storage: storage,
   whitelist: "user",
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer(history));
 
 export default function configureStore (initialState) {
+
   const store = createStore(
     persistedReducer,
     initialState,
-    applyMiddleware(routerMiddleware(history), sagaMiddleware)
+    compose(applyMiddleware(routerMiddleware(history), sagaMiddleware,),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
   );
   sagaMiddleware.run(rootSaga);
 

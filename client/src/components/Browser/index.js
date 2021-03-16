@@ -1,70 +1,73 @@
 import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import * as Core from '@material-ui/core';
-// import * as Icons from '@material-ui/icons';
-// import Cards from "../Cards";
+import { makeStyles } from '@material-ui/core/styles';
+import * as Core from '@material-ui/core';
+import * as Icons from '@material-ui/icons';
+import Cards from "../Cards";
 
-// const useStyles = makeStyles(theme => ({
-//     card: {
-//         border: '2px solid',
-//         borderColor: '#0000',
-//     },
-//     rating: {
-//         maxWidth: "300px",
-//         marginRight: "30px",
-//         marginLeft: "30px"
-//     },
-//     submit: {
-//         width: 250,
-//         margin: "auto",
-//         backgroundColor: "#11888e"
-//     },
-//     root: {
-//                 justifyContent: 'center',
-//         alignItems: 'center',
-//         alignContent: 'center',
-//         display: 'flex',
-//         flexWrap: 'wrap',
-//         overflow: 'hidden',
-//         backgroundColor: theme.palette.background.paper,
-//     },
-//     slider: {
-//         color: "#174f70",
-//     },
-//     arrow: {
-//         color: "#11888e",
-//     },
-// }));
 
-const Browse = () => {
-    // const classes = useStyles();
+const useStyles = makeStyles(theme => ({
+    card: {
+        border: '2px solid',
+        borderColor: '#0000',
+    },
+    rating: {
+        maxWidth: "300px",
+        marginRight: "30px",
+        marginLeft: "30px"
+    },
+    submit: {
+        width: 250,
+        margin: "auto",
+        backgroundColor: "#11888e"
+    },
+    root: {
+                justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        display: 'flex',
+        flexWrap: 'wrap',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    },
+    slider: {
+        color: "#174f70",
+    },
+    arrow: {
+        color: "#11888e",
+    },
+}));
 
-    // const images = [
-    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
-    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
-    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
-    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
-    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
-    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
-    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
-    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
-    //     "https://images.pexels.com/photos/6507482/pexels-photo-6507482.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    // ];
+const Browse = (props) => {
+    const classes = useStyles()
+    const {users,handleSubmit,handleChangeAge,handleChangeLoc,handleChangeRating,
+        handleChangeTags,handleChangeNbrTags,age,nbrTags,loc,rating} = props;
+
+    const images = [
+        "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+        "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+        "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+        "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+        "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+        "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+        "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+        "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+        "https://images.pexels.com/photos/6507482/pexels-photo-6507482.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    ];
 
     return (
         <>
-            {/* <Core.Card className={classes.card}>
+            <Core.Card className={classes.card}>
                 <Core.CardContent>
                     <Core.Grid container item justify="center">
                         <Core.Grid item xs={6} className={classes.rating}>
@@ -78,7 +81,8 @@ const Browse = () => {
                                 <Icons.ExpandLess className={classes.arrow} />
                             </Core.IconButton></Core.Tooltip>
                             <Core.Slider className={classes.slider}
-                                defaultValue={30}
+                                value={rating}
+                                onChange={handleChangeRating}
                                 valueLabelDisplay="auto"
                                 aria-labelledby="range-slider"
                                 step={0.2}
@@ -97,7 +101,8 @@ const Browse = () => {
                                 <Icons.ExpandLess className={classes.arrow} />
                             </Core.IconButton></Core.Tooltip>
                             <Core.Slider className={classes.slider}
-                                defaultValue={30}
+                                value={age}
+                                onChange={handleChangeAge}
                                 valueLabelDisplay="auto"
                                 aria-labelledby="range-slider"
                                 step={1}
@@ -116,12 +121,13 @@ const Browse = () => {
                                 <Icons.ExpandLess className={classes.arrow} />
                             </Core.IconButton></Core.Tooltip>
                             <Core.Slider className={classes.slider}
-                                defaultValue={30}
+                                value={loc}
                                 valueLabelDisplay="auto"
                                 aria-labelledby="range-slider"
                                 step={100}
                                 min={0}
                                 max={1000}
+                                onChange={handleChangeLoc}
                             />
                         </Core.Grid>
                         <Core.Grid item xs={6} className={classes.rating}>
@@ -135,7 +141,8 @@ const Browse = () => {
                                 <Icons.ExpandLess className={classes.arrow} />
                             </Core.IconButton></Core.Tooltip>
                             <Core.Slider className={classes.slider}
-                                defaultValue={30}
+                                value={nbrTags}
+                                onChange={handleChangeNbrTags}
                                 valueLabelDisplay="auto"
                                 aria-labelledby="range-slider"
                                 step={1}
@@ -146,16 +153,17 @@ const Browse = () => {
                     </Core.Grid>
                 </Core.CardContent>
                 <Core.CardActions>
-                    <Core.Button type="submit" color="primary" className={classes.submit} fullWidth variant="contained" >Filter</Core.Button>
+                    <Core.Button type="submit" color="primary" onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" >Filter</Core.Button>
                 </Core.CardActions>
             </Core.Card>
             <Core.Grid item sm={12} style={{ height: 50 }}></Core.Grid>
             <div className={classes.root}>
                 <div className={classes.root}>
-                    {images.map((img) => (<Cards image={img} />))}
+                    {(users.status === 'success') ? (users.users.map((img, index) => (<Cards key={index} user={img.user} image={img.images[0].path} />))) : ''}
                 </div>
-            </div> */}
-            hello
+            </div>
+            {console.log(users.users)}
+            
         </>
     )
 }

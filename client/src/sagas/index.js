@@ -4,6 +4,10 @@ import loginSaga from './loginSaga';
 import logoutSaga from "./logoutSaga";
 import resetPasswordSaga from './resetPSaga';
 import addInfoSaga from './addInfoSaga';
+import stepSaga from './stepSaga';
+import picsSaga from './picsSaga';
+import usersSaga from "./usersSaga";
+
 
 export default function *ind() {
   yield all([
@@ -12,5 +16,8 @@ export default function *ind() {
     fork(resetPasswordSaga),
     fork(logoutSaga),
     fork(addInfoSaga),
+    fork(stepSaga),
+    fork(picsSaga),
+    fork(usersSaga),
   ]);
 }

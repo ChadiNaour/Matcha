@@ -7,16 +7,17 @@ class MapsContainer extends Component{
     componentDidMount(){
         this.props.get_location();
     }
+
     render(){
-        const userLocation = {latitude: this.props.user.latitude, longitude: this.props.user.longitude}
-        const setLocation = ({latitude, longitude}) => {
+        const userLocation = {lat: this.props.user.lat, lng: this.props.user.lng}
+        const setLocation = ({lat, lng}) => {
             const marker = true;
-            this.props.add_LocationSuccess({marker, latitude, longitude});
+            this.props.add_LocationSuccess({marker, lat, lng});
         }
         const handleSubmit = () => {
-            this.props.add_Location({latitude: this.props.user.latitude, longitude: this.props.user.longitude});
+            this.props.add_LocationSuccess({lat: this.props.user.lat, lng: this.props.user.lng});
         }
-        if(!this.props.user.latitude)
+        if(!this.props.user.lat && !this.props.user.lng)
             return null;
         return (
             <Maps isMarker={this.props.user.marker} setLocation={setLocation} userL={userLocation} handleSubmit={handleSubmit}/>
@@ -26,11 +27,11 @@ class MapsContainer extends Component{
 
 const mapStateToProps = (state) => (
 {
-    "user": state.user,
+    user: state.user,
 });
 const mapDispatchToProps = {
-    "get_location": get_location,
-    "add_LocationSuccess": add_LocationSuccess,
+    get_location: get_location,
+    add_LocationSuccess: add_LocationSuccess,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapsContainer);

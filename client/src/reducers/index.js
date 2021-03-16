@@ -7,6 +7,7 @@ import userReducer from './userReducer';
 import addInfoReducer from './addInfoReducer';
 import imagesReducer from './imagesReducers';
 import resetPasswordReducer from "./resetPReducer";
+import usersReducer from './usersReducer';
 
 
 const combinedReducer = (history)=> combineReducers({
@@ -14,6 +15,7 @@ const combinedReducer = (history)=> combineReducers({
     "register" : registerReducer,
     "login": loginReducer,
     "user" : userReducer,
+    "users" : usersReducer,
     "images" : imagesReducer,
     "addInfo" : addInfoReducer,
     "resetPassword": resetPasswordReducer,

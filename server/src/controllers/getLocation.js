@@ -8,13 +8,13 @@ getLocation = async (req, res) => {
         if(respo.latitude === null) {
             axios.get('http://ipinfo.io/json')
             .then(resp => {
-                const arr = resp.data.localisation.split(",");
-                const localisation = {lat: parseFloat(arr[0]), long: parseFloat(arr[1])}
+                const arr = resp.data.loc.split(",");
+                const localisation = {lat: parseFloat(arr[0]), lng: parseFloat(arr[1])}
                 res.send({marker: false, localisation})
             })
         }
         else{
-            const localisation = {lat: respo.latitude, long: respo.longitude}
+            const localisation = {lat: respo.latitude, lng: respo.longitude}
             res.send({marker: true, localisation})
         }
     }).catch(err => res.send(err));

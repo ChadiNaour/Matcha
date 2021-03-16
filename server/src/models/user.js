@@ -3,11 +3,11 @@ const queries = require("../Config/queries");
 const SELECT = queries.SELECT;
 const INSERT = queries.INSERT;
 const UPDATE = queries.UPDATE;
-// const DELETE = queries.DELETE;
+const DELETE = queries.DELETE;
 
 module.exports = {
-    Register: function (lastname, firstname, username, email, password) {
-        con.query(INSERT.AddUser, [lastname, firstname, username, email, password], (err, res) => {
+    Register: function (username, email, password) {
+        con.query(INSERT.AddUser, [username, email, password], (err, res) => {
             if (err) {
                 throw err;
             }
@@ -30,7 +30,18 @@ module.exports = {
             });
         })
     },
-
+    getUsers: function (id) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.GetUsers, [id,id,id,id], (err,res) => {
+                if(err)
+                    reject(err);
+                else
+                {
+                    resolve(JSON.parse(JSON.stringify(res)));
+                }
+            });
+        })
+    },
     update: function (type, value){
         return new Promise ((resolve, reject) => {
             con.query(UPDATE[type], value,(err,res) => {
@@ -42,9 +53,9 @@ module.exports = {
         })
     },
 
-    updateInfo: function (gender, Sexual_orientation, date_birthday, biography, id) {
+    updateInfo: function (lastname, firstname, gender, Sexual_orientation, date_birthday, biography, id) {
         return new Promise ((resolve, reject) => {
-            con.query(UPDATE.UpdateInfo, [gender, Sexual_orientation, date_birthday, biography, id], (err,res) => {
+            con.query(UPDATE.UpdateInfo, [lastname, firstname, gender, Sexual_orientation, date_birthday, biography, id], (err,res) => {
                 if(err)
                     reject(err);
                 else{
@@ -54,9 +65,35 @@ module.exports = {
         })
     },
 
+    TagCreatedNbr: function (id) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.TagCreatedNbr, [id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+
+    checkTags: function (tag) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.CheckTag, [tag], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+
     deleteUserTag: function (id) {
         return new Promise ((resolve, reject) => {
-            conn.query(DELETE.DeleteUserTags, [id], (err,res) => {
+            con.query(DELETE.DeleteUserTags, [id], (err,res) => {
                 if(err)
                     reject(err);
                 else{
@@ -81,7 +118,7 @@ module.exports = {
 
     getTagId : function (tag) {
         return new Promise ((resolve, reject) => {
-            conn.query(SELECT.GeTagId, [tag], (err,res) => {
+            con.query(SELECT.GetTagId, [tag], (err,res) => {
                 if(err)
                     reject(err);
                 else{
@@ -94,7 +131,7 @@ module.exports = {
 
     insertUserTag: function (id, tag) {
         return new Promise ((resolve, reject) => {
-            conn.query(INSERT.InsertUserTag, [id, tag_id], (err,res) => {
+            con.query(INSERT.InsertUserTag, [id, tag], (err,res) => {
                 if(err)
                     reject(err);
                 else
@@ -103,6 +140,43 @@ module.exports = {
         })
     },
 
+    createTag: function (tag, id) {
+        return new Promise ((resolve, reject) => {
+            con.query(INSERT.CreateTag, [tag, id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+
+                    resolve(res);
+                }
+            });
+        })
+    },
+    getUserInterests : function (id) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.GetUserInter, [id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    let options = [];
+                    Object.keys(resArray).forEach(function()
+                    {
+                        for (var i = 0; i < resArray.length; i++) {
+                            options[i] = {
+                                value: resArray[i].interest,
+                                label: resArray[i].interest,
+                            };
+                        }
+                    });
+                    if(options.length > 0)
+                        resolve(options);
+                    else
+                        resolve(null);
+                }
+            });
+        })
+    },
     select: function (type, value) {
         return new Promise((resolve, reject) => {
             con.query(SELECT[type], value, (err, res) => {
