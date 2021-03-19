@@ -72,6 +72,7 @@ const Infos = (props) => {
 
   return (
     <>
+      <div style={{ width: "100%", height: "100%" }}>
         <CssBaseline />
         {selectError && <Flash variant="error" msg={selectError} />}
         <form className={classes.form}>
@@ -94,7 +95,7 @@ const Infos = (props) => {
                 rows='1'
               />
             </Core.Grid>
-            <Core.Grid item xs={12} sm={6}>
+            <Core.Grid item xs={12}>
               <Core.FormLabel component="legend">Gender</Core.FormLabel>
               <Core.RadioGroup
               >
@@ -107,7 +108,7 @@ const Infos = (props) => {
                 </div>
               </Core.RadioGroup>
             </Core.Grid>
-            <Core.Grid item  xs={12} sm={6}>
+            <Core.Grid item xs={12}>
               <Core.FormLabel component="legend">Matches</Core.FormLabel>
               <Core.RadioGroup
               >
@@ -121,10 +122,10 @@ const Infos = (props) => {
                 </div>
               </Core.RadioGroup>
             </Core.Grid>
-            <Core.Grid className={classes.chose} xs={12} sm={6}>
+            <Core.Grid className={classes.chose} item xs={12}>
               <Core.FormLabel component="legend">Birthday</Core.FormLabel>
               <Field
-                name="birthday"
+                name="date_birthday"
                 component={renderDatepicker}
               />
             </Core.Grid>
@@ -132,11 +133,7 @@ const Infos = (props) => {
                 <Core.FormLabel component="legend">Interests</Core.FormLabel>
                 <Field name='interests'/>
               </Core.Grid> */}
-            <Core.Grid item xs={12} sm={6}>
-              <Core.FormLabel component="legend">Tags</Core.FormLabel>
-              <Field name='tags' component={selectField} />
-            </Core.Grid>
-             <Core.Grid item xs={12}>
+            <Core.Grid item xs={12}>
               <Core.FormLabel component="legend">Bio</Core.FormLabel>
               <Field
                 name="biography"
@@ -146,16 +143,20 @@ const Infos = (props) => {
                 variant='outlined'
               />
             </Core.Grid>
-            <Core.Grid container direction="row" item xs={12} style={{ marginTop: "1%",alignItems: "center", justifyContent: "center", float: "center" }}>
-              <Core.Grid style={{ alignItems: "center", justifyContent: "center", float: "center" }}/>
-              <Core.Grid item container style={{ alignItems: "center", justifyContent: "center", float: "center" }} direction="row" item xs={12} xs={1}>
+            <Core.Grid item xs={12}>
+              <Core.FormLabel component="legend">Tags</Core.FormLabel>
+              <Field name='tags' component={selectField} />
+            </Core.Grid>
+            <Core.Grid container direction="row" item xs={12}>
+              <Core.Grid item xs={9} />
+              <Core.Grid item container alignItems="flex-end" xs={3}>
                 <Core.Button onClick={handleSubmit} fullWidth variant="contained" type="submit" className={classes.button} name="submit" value="ok" >Next</Core.Button>
               </Core.Grid>
             </Core.Grid>
           </Core.Grid>
         </form>
+      </div>
     </>
   );
 };
 export default Infos;
-

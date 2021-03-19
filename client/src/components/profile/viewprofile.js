@@ -1,162 +1,206 @@
-import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles } from "@material-ui/core/styles";
-import * as Core from "@material-ui/core";
-import { Field } from "redux-form";
-import Flash from '../commun/flash';
-import renderField from '../commun/TextField';
-import RadioGroup from '../commun/RadioGroup';
-import CreatableSelect from 'react-select/creatable';
-// import * as Icons from '@material-ui/icons';
+import React from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { Grid } from '@material-ui/core';
+import Chip from '@material-ui/core/Chip';
+import CardMedia from '@material-ui/core/CardMedia';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import Divider from '@material-ui/core/Divider';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import { Link } from 'react-router-dom';
+import AddIcon from '@material-ui/icons/Add';
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    background: "linear-gradient(15deg, #11978D 30%, #11878D 70%)",
-    justifyContent: "center",
-    color: "#FFF",
+const BorderLinearProgress = withStyles((theme) => ({
+  root: {
+    height: 10,
+    borderRadius: 5,
   },
-  
-  form: {
-    width: "100%",
-    paddingTop: theme.spacing(4),
-    paddingLeft: theme.spacing(5),
-    paddingRight: theme.spacing(5),
-    paddingBottom: theme.spacing(2),
+  colorPrimary: {
+    backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 100 : 700],
   },
-  chose: {
+  bar: {
+    borderRadius: 5,
+    background: 'linear-gradient(65deg, #FE6B8B 60%, #FF8E53 90%)',
   },
+}))(LinearProgress);
+
+const useStyles = makeStyles(theme => ({
+  // root: {
+  //   padding: '10px',
+  //   boxShadow: 3,
+  // },
+  card: {
+    minWidth: 300,
+    maxWidth: 350,
+    minHeight: 750,
+    maxHeight: 850,
+    borderRadius: '10px',
+    marginLeft: '10px',
+    background: 'linear-gradient(45deg, #FE6B8B 60%, #FF8E53 30%)',
+  },
+  cardMedia: {
+    maxWidth: 200,
+    maxHeight: 200,
+    borderRadius: '300px',
+  },
+  cardHeader: {
+    maxWidth: 400,
+    maxHeight: 200,
+  },
+
+  cardContent: {
+    maxWidth: 400,
+    maxHeight: 200,
+  },
+  cardAction: {
+    maxWidth: 400,
+    maxHeight: 50,
+  },
+  avatarON: {
+    backgroundColor: '#00FB0C',
+    width: 5,
+    height: 5,
+    margin: 5
+  },
+  avatarOF: {
+    backgroundColor: '#e42416',
+    width: 5,
+    height: 5,
+    margin: 5
+  },
+  chip: {
+    marginRight: '5px',
+  },
+  root: {
+    maxWidth: 400,
+    flexGrow: 1,
+  },
+  img: {
+    height: 255,
+    display: 'block',
+    maxWidth: 400,
+    overflow: 'hidden',
+    width: '100%',
+  },
+  pics: {
+
+  }
 }));
 
-const renderDatepicker = ({ input, label, meta: { touched, error } }
-) => (
-  <Core.TextField
-    {...input}
-    type="date"
-    label={label}
-    error={touched && (error ? true : false)}
-    helperText={touched && error}
-    InputLabelProps={{
-      shrink: true,
-    }}
-  />
-)
-
-
-const Infos = (props) => {
+const ViewProfile = (props) => {
+  const { user, images, tags } = props;
   const classes = useStyles();
-  const { handleSubmit, selectLoading, selectTags, selectError, createTag } = props;
-
-  const handleCreate = (value) => {
-    createTag(value);
-  }
-
-  const selectField = ({ input, meta: { touched, error } }) => (
-    <div>
-      <CreatableSelect
-        {...input}
-        isMulti
-        isDisabled={selectLoading}
-        isLoading={selectLoading}
-        isClearable={false}
-        options={selectTags}
-        onBlur={() => input.onBlur(input.value)}
-        onChange={(value) => { input.onChange(value) }}
-        onCreateOption={handleCreate}
-      />
-
-      <div>{(touched && error) &&
-        <div style={{ 'fontSize': '12px', 'color': 'rgb(244, 67, 54)' }}>{error}</div>}
-      </div>
-    </div>
-  );
-
+  const rating = user.rating;
   return (
-    <>
-      <div style={{ width: "100%", height: "100%" }}>
-        <CssBaseline />
-        {selectError && <Flash variant="error" msg={selectError} />}
-        <form className={classes.form}>
-          <Core.Grid container justify="center" spacing={2}>
-            <Core.Grid item xs={12} sm={6}>
-              <Field
-                name="firstname"
-                component={renderField}
-                label="Firstname"
-                type="text"
-                rows='1'
-              />
-            </Core.Grid>
-            <Core.Grid item xs={12} sm={6}>
-              <Field
-                name="lastname"
-                component={renderField}
-                label="Lastname"
-                type="text"
-                rows='1'
-              />
-            </Core.Grid>
-            <Core.Grid item xs={12}>
-              <Core.FormLabel component="legend">Gender</Core.FormLabel>
-              <Core.RadioGroup
-              >
-                <div>
-                  <Field component={RadioGroup} name="gender" required={true} options={[
-                    { title: 'Male', value: 'male' },
-                    { title: 'Female', value: 'female' }
-                  ]}
-                  />
-                </div>
-              </Core.RadioGroup>
-            </Core.Grid>
-            <Core.Grid item xs={12}>
-              <Core.FormLabel component="legend">Matches</Core.FormLabel>
-              <Core.RadioGroup
-              >
-                <div>
-                  <Field component={RadioGroup} name="Sexual_orientation" required={true} options={[
-                    { title: 'Men ', value: 'men' },
-                    { title: 'Women', value: 'women' },
-                    { title: 'Both', value: 'both' }
-                  ]}
-                  />
-                </div>
-              </Core.RadioGroup>
-            </Core.Grid>
-            <Core.Grid className={classes.chose} item xs={12}>
-              <Core.FormLabel component="legend">Birthday</Core.FormLabel>
-              <Field
-                name="birthday"
-                component={renderDatepicker}
-              />
-            </Core.Grid>
-            {/* <Core.Grid item xs={5}>
-                <Core.FormLabel component="legend">Interests</Core.FormLabel>
-                <Field name='interests'/>
-              </Core.Grid> */}
-            <Core.Grid item xs={12}>
-              <Core.FormLabel component="legend">Bio</Core.FormLabel>
-              <Field
-                name="biography"
-                component={renderField}
-                type="text"
-                rows='4'
-                variant='outlined'
-              />
-            </Core.Grid>
-            <Core.Grid item xs={12}>
-              <Core.FormLabel component="legend">Tags</Core.FormLabel>
-              <Field name='tags' component={selectField} />
-            </Core.Grid>
-            <Core.Grid container direction="row" item xs={12}>
-              <Core.Grid item xs={9} />
-              <Core.Grid item container alignItems="flex-end" xs={3}>
-                <Core.Button onClick={handleSubmit} fullWidth variant="contained" type="submit" className={classes.button} name="submit" value="ok" >Next</Core.Button>
-              </Core.Grid>
-            </Core.Grid>
-          </Core.Grid>
-        </form>
-      </div>
-    </>
+    <Grid container>
+      <Grid item xs={2}>
+        <Card className={classes.card} >
+          <CardHeader
+            className={classes.cardHeader}
+            avatar={
+              <Link to={'/chat'}>
+                <IconButton alt='chat'><ChatBubbleOutlineIcon /></IconButton>
+              </Link>
+
+            }
+            subheader={
+              <Link to={'/edit_profile'}>
+                <IconButton style={{ display: 'flex', float: "right" }} alt='Edit profile'><EditIcon /> </IconButton>
+              </Link>
+            }
+          />
+          <CardMedia style={{ display: 'flex', justifyContent: 'center' }}>
+            <Grid className={classes.cardMedia}>
+                {/* <img style={{ width: "150px", height: "150px", borderRadius: "100%" }} src={`http://localhost:3001/${user.profilePic}`} alt='photos' /> */}
+                {images.isImages && images.images.map((tile) => {
+                  return (
+                    <Grid key={tile.id} >
+                    {(tile.isProfilePic) ? <img style={{ width: "150px", height: "150px", borderRadius: "100%" }} src={`http://localhost:3001/${tile.path}`} alt='photos' /> : null}
+                    </Grid>
+                  )
+                }
+                )}
+            </Grid>
+          </CardMedia>
+          <Typography component={'span'} variant={'body2'} style={{ display: 'flex', justifyContent: 'center' }} >
+            {' @' + user.username}
+            {<Avatar className={user.Online === 1 ? classes.avatarON : classes.avatarOF}> </Avatar>}
+          </Typography>
+          <Typography style={{ display: 'flex', justifyContent: 'center' }}>
+            {user.firstname + ' ' + user.lastname}
+          </Typography>
+          <Divider />
+          <Box component="fieldset" mb={2} mt={2} borderColor="transparent">
+            <div className={classes.rating1} >
+              <BorderLinearProgress variant="determinate" value={rating} />
+            </div>
+          </Box>
+          <Divider />
+          <Box display="flex" p={0} m={3} >
+            <Box display="flex" justifyContent="flex-start" width="100%">
+              GENDER :
+          </Box>
+            <Box >
+              <strong>{user.gender}</strong>
+            </Box>
+          </Box>
+          <Box display="flex" p={0} m={3} >
+            <Box display="flex" justifyContent="flex-start" width="100%">
+              AGE :
+          </Box>
+            <Box >
+              <strong>{user.age}</strong>
+            </Box>
+          </Box>
+          <Box display="flex" p={0} m={3} >
+            <Box display="flex" justifyContent="flex-start" width="100%">
+              INTERESTED IN  :
+          </Box>
+            <Box >
+              {user.Sexual_orientation}
+            </Box>
+          </Box>
+          <Divider />
+          <Box p={0} mt={2} >
+            <Box >
+              BIO :
+          </Box> <br />
+            <Box >
+              {user.biography}
+            </Box>
+          </Box>
+          <Divider />
+          <Box p={0} mt={2} >
+            <Box >
+              Tags :
+          </Box> <br />
+            <Box >
+              {tags != null && tags.map((item, index) => <Chip key={index} className={classes.chip} label={item.value} />)}
+            </Box>
+          </Box>
+        </Card>
+      </Grid>
+      <Grid item xs={10} className={classes.pics}>
+        {images.isImages && images.images.map((tile) => {
+          return (
+            <Grid key={tile.id} style={{ display: "inline", float: "left" }}>
+              <img style={{ width: "200px", height: "200px", borderRadius: "12px", margin: "3px" }} src={`http://localhost:3001/${tile.path}`} alt='photos' />
+            </Grid>
+          )
+        }
+        )}
+
+        <Link to={'/AddPic'}>
+          <IconButton style={{ display: 'flex', float: "left", width: "200px", height: "200px" }} alt='Edit profile'><AddIcon /> </IconButton>
+        </Link>
+      </Grid>
+    </Grid>
   );
-};
-export default Infos;
+}
+export default ViewProfile;

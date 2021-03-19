@@ -6,7 +6,8 @@ import resetPasswordSaga from './resetPSaga';
 import addInfoSaga from './addInfoSaga';
 import stepSaga from './stepSaga';
 import picsSaga from './picsSaga';
-import usersSaga from "./usersSaga";
+import editProfile from './profileSaga';
+import chatSaga from "./chatSaga";
 
 
 export default function *ind() {
@@ -18,6 +19,7 @@ export default function *ind() {
     fork(addInfoSaga),
     fork(stepSaga),
     fork(picsSaga),
-    fork(usersSaga),
+    fork(editProfile),
+    fork(chatSaga),
   ]);
 }

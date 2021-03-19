@@ -7,6 +7,7 @@ import userReducer from './userReducer';
 import addInfoReducer from './addInfoReducer';
 import imagesReducer from './imagesReducers';
 import resetPasswordReducer from "./resetPReducer";
+import chat from './chatReducer';
 import usersReducer from './usersReducer';
 
 
@@ -19,6 +20,7 @@ const combinedReducer = (history)=> combineReducers({
     "images" : imagesReducer,
     "addInfo" : addInfoReducer,
     "resetPassword": resetPasswordReducer,
+    "chat": chat,
     form
 });
 export default combinedReducer;
