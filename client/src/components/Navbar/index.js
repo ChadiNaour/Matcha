@@ -61,7 +61,8 @@ const useStyles = makeStyles(theme => ({
         display: 'none',
     },
     avatar: {
-        marginLeft: "5%",
+        height: "37px",
+        width : "37px"
     },
     notif: {
         color: "#174F70",
@@ -139,10 +140,10 @@ const Navbar = (props) => {
                         </Core.Badge>
                     </Core.Button>}
                     {user &&
-                        <Core.Typography variant="h6" color="primary" className={classes.title} style={{color: "#174F70"}}>
+                        <Core.Typography variant="h6" color="primary" className={classes.title} style={{color: "#174F70", margin : "0px"}}>
                             {user.username}
                         </Core.Typography>}
-                        {user && <Core.Button className={classes.username}  onClick={handleOpenMenu}>
+                        {user && <Core.Button className={classes.username}  onClick={handleOpenMenu} style={{margin : "0px"}}>
                         {images.isImages && images.images.map((tile) => {
                             return (
                                 <Core.Grid key={tile.id} >

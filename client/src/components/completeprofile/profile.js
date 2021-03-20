@@ -171,7 +171,7 @@ const Profile = (props) => {
               </Core.Typography>
                 </React.Fragment>
               ) : (
-                <React.Fragment justifyContent="center" >
+                <React.Fragment>
                     {getStepContent(activeStep)}
                 </React.Fragment>
               )}
