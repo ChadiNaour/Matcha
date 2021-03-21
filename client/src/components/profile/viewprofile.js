@@ -14,6 +14,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
+import {ResponsiveGridLayout } from 'react-grid-layout';
 import AddIcon from "@material-ui/icons/Add";
 
 const BorderLinearProgress = withStyles((theme) => ({
@@ -132,12 +133,10 @@ const ViewProfile = (props) => {
       alignItems="center"
       justify="center"
       style={{
-        height: "100vh",
-        backgroundColor: "yellow",
-        // marginTop:"7%"
+        marginTop:"7%"
       }}
     >
-      {/* <Grid
+       {/* <Grid
         item
         xs={12}
         container
@@ -148,26 +147,24 @@ const ViewProfile = (props) => {
           backgroundColor: "green",
           // marginTop:"7%"
         }} 
-      >*/}
+      > */}
         <Grid
-          item
-          sm={10}
+          container
+          sm={11}
           xs={12}
-          lg={5}
+          md={11}
+          lg={6}
           // direction="row"
           style={{
-            backgroundColor: "red",
             height: "750px",
-            marginTop: "7%",
           }}
         >
           <Grid
             item
-            sm={6}
-            // xs={12}
-            // lg={4}
+            sm={4}
+            xs={12}
+            lg={4}
             style={{
-              backgroundColor: "blue",
               height: "100%",
               // marginTop: "50%"
             }}
@@ -322,36 +319,56 @@ const ViewProfile = (props) => {
               </Box>
             </Card>
           </Grid>
-          <Grid
-            item
-            sm={6}
-            // xs={12}
-            // lg={8}
-            height="100%"
-            style={{backgroundColor: "green",  height:"100%"}}
-            // className={classes.pics}
-          ></Grid>
-          {/* {images.isImages &&
+          <Grid 
+          container
+          // float="center"
+          // alignItems="center"
+          // justify="center"
+          sm={8}
+          xs={12}
+          lg={8}
+          style={{
+          padding: '2%',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          backgroundColor: "#D3D3D3",
+          // display: "flex",
+          // flexDirection: "wrap",
+          // maxWidth: "600px",
+          borderTopRightRadius: "10px",
+          borderBottomRightRadius: "10px",
+          borderTopLeftRadius: "0px",
+          borderBottomLeftRadius: "0px",
+          border: "1px solid #D7D4D3",
+          // alignContent: "center",
+          // justifyContent: "center",
+        }}
+          >
+          {images.isImages &&
             images.images.map((tile) => {
               return (
-                <Grid key={tile.id} style={{ display: "flex", flexDirection: "wrap" , justifyContent: "cente"}}>
-                  <img
+                <dev key={tile.id} style={{backgroundcolor: "red"}} >
+                  {/* <img
                     style={{
                       width: "200px",
                       height: "200px",
                       borderRadius: "12px",
-                      margin: "3px",
+                      margin: "5px",
                       display: "flex",
-                      flexDirection: "wrap",
+                      // flexDirection: "wrap",
+                      backgroundColor: "red"
                     }}
                     src={`http://localhost:3001/${tile.path}`}
                     alt="photos"
-                  />
-                </Grid>
+                  /> */}
+                </dev>
               );
-            })} */}
+            })}
+            
 
-          {/* <Link to={"/AddPic"}>
+          <Link to={"/AddPic"}>
             <IconButton
               style={{
                 display: "flex",
@@ -363,9 +380,9 @@ const ViewProfile = (props) => {
             >
               <AddIcon />{" "}
             </IconButton>
-          </Link> */}
+          </Link>
         </Grid>
-      {/* </Grid> */}
+      </Grid>
     </Grid>
   );
 };
