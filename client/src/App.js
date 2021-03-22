@@ -6,6 +6,7 @@ import socket from './socketConn';
 import {NewNotif, GetNotif, OpenNotifSuccess} from './actions/notifAction';
 import './App.css'
 function App(props) {
+  // console.log(props);
   useEffect(() => {
     props.store.dispatch(GetNotif());
     const handleNotif = (data) => {
@@ -18,6 +19,7 @@ function App(props) {
     socket.on('openedNotif', handleOpenNotif);
   }, [])
   const handlerFunc =  () =>  {
+    // console.log('connected')
     props.store.dispatch({type: "REJOIN_ROOM"});
   }
   socket.on('connect', handlerFunc)

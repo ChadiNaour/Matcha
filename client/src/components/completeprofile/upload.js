@@ -10,15 +10,10 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
 import CheckCircleSharpIcon from '@material-ui/icons/CheckCircleSharp';
 import Tooltip from '@material-ui/core/Tooltip';
-import { yellow } from '@material-ui/core/colors';
 const useStyles = makeStyles(theme => ({
   card: {
    height :150,
     position : 'center',
-  },
-  upload: {
-    color: "#11878D",
-    // backgroundImage: "linear-gradient(15deg, #174F70 30%, #11878D 70%)",
   },
   input: {
     display: 'none',
@@ -27,30 +22,15 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2, 0, 2),
     backgroundColor: theme.palette.secondary.main,
 }, root: {
-  justifyContent: 'center',
-  alignItems: 'center',
-  alignContent: 'center',
   display: 'flex',
   flexWrap: 'wrap',
+  justifyContent: 'space-around',
   overflow: 'hidden',
-  padding: "2%",
-  marginBottom : "3%",
+
 },
 gridList: {
-  
-  // backgroundColor: "red",
-  width: 200,
-  height: 220,
-  marginRight: "20px!important",
-  justifyContent: "center",
-  alignContent : "center",
-   justifyContent: 'center',
-  alignItems: 'center',
-  alignContent: 'center',
-  display: 'flex',
-  // flexWrap: 'wrap',
-  overflow: 'hidden',
-  boxShadow : "10px",
+  width: 500,
+  height: 450,
 },
 titleBar: {
   background:
@@ -62,12 +42,6 @@ delete : {
 },
 add : {
   display: 'none',
-},
-machiroot: {
-  display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "space-around",
-  overflow: "hidden",
 }
 }));
 const calcImages = (images) =>{
@@ -93,22 +67,22 @@ const  Photos = (props) => {
          <input accept="image/*" className={classes.input} id="icon-button-file" type="file"  onChange={fileChangedHandler}/>
          <label htmlFor="icon-button-file">
           <IconButton color="primary" aria-label="upload picture" component="span">
-            <AddAPhotoIcon className={classes.upload} style={{fontSize : 70}}/>
+            <AddAPhotoIcon color='primary' style={{fontSize : 70}}/>
           </IconButton>
         </label>
         </div>
       
       </Grid>
-          <div className={classes.root} style={{display: "flex", flexDirection: "wrap" }}>
+          <div className={classes.root}>
+            <GridList cellHeight={180} className={classes.gridList}>
+
               {images.isImages  && images.images.map((tile) => {
                 return (
-                  <div className={classes.machiroot} style={{display: "flex", flexDirection: "wrap" }}>
-                <GridList boxShadow={3} cellHeight={300} className={classes.gridList}>
-                  <GridListTile  key={tile.id} style={{width: "100%", height: "100%"}}>
+                  <GridListTile  key={tile.id}>
                     <img src={`http://localhost:3001/${tile.path}`} alt='photos' />
                     <GridListTileBar
                       actionPosition="left"
-                      className={classes.delete}
+                      className={classes.titleBar}
                       title={tile.isProfilePic === 1 && 'Profile picture'}
                       actionIcon={
                         <Tooltip title ="set profile pic"><IconButton aria-label="profilePic"  onClick={(e) => setProfilePicture(tile.id)}>
@@ -129,11 +103,9 @@ const  Photos = (props) => {
                       }
                     />
                   </GridListTile> 
-                  </GridList>
-                  </div>
                 )}
               )}
-          
+            </GridList>
             
           </div>
     </Container>

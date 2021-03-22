@@ -9,19 +9,22 @@ import picsSaga from './picsSaga';
 import editProfile from './profileSaga';
 import chatSaga from "./chatSaga";
 import usersSaga from "./usersSaga";
+import notifSaga from "./notifSaga";
 
 
 export default function *ind() {
   yield all([
     fork(registerSaga),
     fork(loginSaga),
+    fork(picsSaga),
     fork(resetPasswordSaga),
     fork(logoutSaga),
     fork(addInfoSaga),
     fork(stepSaga),
-    fork(picsSaga),
     fork(editProfile),
     fork(chatSaga),
     fork(usersSaga),
+    fork(notifSaga),
+
   ]);
 }

@@ -14,9 +14,9 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
-import {ResponsiveGridLayout } from 'react-grid-layout';
+// import {ResponsiveGridLayout } from 'react-grid-layout';
 import AddIcon from "@material-ui/icons/Add";
-import { Paper } from '@material-ui/core';
+import { Paper } from "@material-ui/core";
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
   },
   pics: {
     height: "100%",
-    backgroundColor: "#D3D3D3",
+    background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
     // display: "flex",
     // flexDirection: "wrap",
     // maxWidth: "600px",
@@ -136,11 +136,11 @@ const ViewProfile = (props) => {
       alignItems="center"
       justify="center"
       style={{
-        boxShadow : "10px",
-        marginTop:"6%"
+        boxShadow: "10px",
+        marginTop: "6%",
       }}
     >
-       {/* <Grid
+      {/* <Grid
         item
         xs={12}
         container
@@ -152,178 +152,176 @@ const ViewProfile = (props) => {
           // marginTop:"7%"
         }} 
       > */}
+      <Grid
+        container
+        sm={11}
+        xs={12}
+        md={11}
+        lg={6}
+        // direction="row"
+        style={{
+          height: "750px",
+        }}
+      >
         <Grid
-          container
-          sm={11}
+          item
+          sm={4}
           xs={12}
-          md={11}
-          lg={6}
-          // direction="row"
+          lg={4}
           style={{
-            height: "750px",
+            height: "100%",
+            // marginTop: "50%"
           }}
         >
-          <Grid
-            item
-            sm={4}
-            xs={12}
-            lg={4}
-            style={{
-              height: "100%",
-              // marginTop: "50%"
-            }}
-          >
-            <Paper elevation={10} className={classes.card}>
-              <CardHeader
-                className={classes.cardHeader}
-                avatar={
-                  <Link to={"/chat"}>
-                    <IconButton alt="chat">
-                      <ChatBubbleOutlineIcon />
-                    </IconButton>
-                  </Link>
-                }
-                subheader={
-                  <Link to={"/edit_profile"}>
-                    <IconButton
-                      style={{ display: "flex", float: "right" }}
-                      alt="Edit profile"
-                    >
-                      <EditIcon />{" "}
-                    </IconButton>
-                  </Link>
-                }
-              />
-              <CardMedia
-                style={{
-                  display: "flex",
-                  flexDirection: "wrap",
-                  justifyContent: "center",
-                }}
-              >
-                <Grid className={classes.cardMedia}>
-                  {images.isImages &&
-                    images.images.map((tile) => {
-                      return (
-                        <Grid
-                          key={tile.id}
-                          style={{ display: "flex", flexDirection: "wrap" }}
-                        >
-                          {tile.isProfilePic ? (
-                            <img
-                              style={{
-                                width: "150px",
-                                height: "150px",
-                                borderRadius: "100%",
-                                border: "1px solid #D7D4D3",
-                              }}
-                              src={`http://localhost:3001/${tile.path}`}
-                              alt="photos"
-                            />
-                          ) : null}
-                        </Grid>
-                      );
-                    })}
-                </Grid>
-              </CardMedia>
-              <Grid
-                style={{
-                  display: "flex",
-                  flex: "row",
-                  justifyContent: "center",
-                }}
-              >
-                <Typography
-                  className={classes.type}
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                  {user.username}
-                </Typography>
-                {
-                  <Avatar
-                    className={
-                      user.Online === 1 ? classes.avatarON : classes.avatarOF
-                    }
+          <Paper className={classes.card}>
+            <CardHeader
+              className={classes.cardHeader}
+              avatar={
+                <Link to={"/chat"}>
+                  <IconButton alt="chat">
+                    <ChatBubbleOutlineIcon />
+                  </IconButton>
+                </Link>
+              }
+              subheader={
+                <Link to={"/edit_profile"}>
+                  <IconButton
+                    style={{ display: "flex", float: "right" }}
+                    alt="Edit profile"
                   >
-                    {" "}
-                  </Avatar>
-                }
+                    <EditIcon />{" "}
+                  </IconButton>
+                </Link>
+              }
+            />
+            <CardMedia
+              style={{
+                display: "flex",
+                flexDirection: "wrap",
+                justifyContent: "center",
+              }}
+            >
+              <Grid className={classes.cardMedia}>
+                {images.isImages &&
+                  images.images.map((tile) => {
+                    return (
+                      <Grid
+                        key={tile.id}
+                        style={{ display: "flex", flexDirection: "wrap" }}
+                      >
+                        {tile.isProfilePic ? (
+                          <img
+                            style={{
+                              width: "150px",
+                              height: "150px",
+                              borderRadius: "100%",
+                              border: "1px solid #D7D4D3",
+                            }}
+                            src={`http://localhost:3001/${tile.path}`}
+                            alt="photos"
+                          />
+                        ) : null}
+                      </Grid>
+                    );
+                  })}
               </Grid>
+            </CardMedia>
+            <Grid
+              style={{
+                display: "flex",
+                flex: "row",
+                justifyContent: "center",
+              }}
+            >
               <Typography
-                className={classes.type1}
+                className={classes.type}
                 style={{ display: "flex", justifyContent: "center" }}
               >
-                {user.firstname + " " + user.lastname}
+                {user.username}
               </Typography>
-              <Divider />
-              <Box component="fieldset" mb={2} mt={2} borderColor="transparent">
-                <div className={classes.rating1}>
-                  <BorderLinearProgress
-                    variant="determinate"
-                    value={(rating * 100) / 5}
-                  />
-                </div>
+              {
+                <Avatar
+                  className={
+                    user.Online === 1 ? classes.avatarON : classes.avatarOF
+                  }
+                >
+                  {" "}
+                </Avatar>
+              }
+            </Grid>
+            <Typography
+              className={classes.type1}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              {user.firstname + " " + user.lastname}
+            </Typography>
+            <Divider />
+            <Box component="fieldset" mb={2} mt={2} borderColor="transparent">
+              <div className={classes.rating1}>
+                <BorderLinearProgress
+                  variant="determinate"
+                  value={(rating * 100) / 5}
+                />
+              </div>
+            </Box>
+            <Divider />
+            <Box display="flex" p={0} m={3}>
+              <Box display="flex" justifyContent="flex-start" width="100%">
+                <Typography className={classes.type2}>GENDER :</Typography>
               </Box>
-              <Divider />
-              <Box display="flex" p={0} m={3}>
-                <Box display="flex" justifyContent="flex-start" width="100%">
-                  <Typography className={classes.type2}>GENDER :</Typography>
-                </Box>
-                <Box>
-                  <Typography className={classes.type2}>
-                    {user.gender}
-                  </Typography>
-                </Box>
-              </Box>
-              <Box display="flex" p={0} m={3}>
-                <Box display="flex" justifyContent="flex-start" width="100%">
-                  <Typography className={classes.type2}>AGE :</Typography>
-                </Box>
-                <Box>
-                  <Typography className={classes.type2}>{user.age}</Typography>
-                </Box>
-              </Box>
-              <Box display="flex" p={0} m={3}>
-                <Box display="flex" justifyContent="flex-start" width="100%">
-                  <Typography className={classes.type2}>
-                    INTERESTED IN :
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography className={classes.type2}>
-                    {user.Sexual_orientation}
-                  </Typography>
-                </Box>
-              </Box>
-              <Divider />
               <Box>
+                <Typography className={classes.type2}>{user.gender}</Typography>
+              </Box>
+            </Box>
+            <Box display="flex" p={0} m={3}>
+              <Box display="flex" justifyContent="flex-start" width="100%">
+                <Typography className={classes.type2}>AGE :</Typography>
+              </Box>
+              <Box>
+                <Typography className={classes.type2}>{user.age}</Typography>
+              </Box>
+            </Box>
+            <Box display="flex" p={0} m={3}>
+              <Box display="flex" justifyContent="flex-start" width="100%">
+                <Typography className={classes.type2}>
+                  INTERESTED IN :
+                </Typography>
+              </Box>
+              <Box>
+                <Typography className={classes.type2}>
+                  {user.Sexual_orientation}
+                </Typography>
+              </Box>
+            </Box>
+            <Divider />
+            <Box>
+              <Box m={1}>
+                <Typography className={classes.type2}>BIO :</Typography>
                 <Box m={1}>
-                  <Typography className={classes.type2}>BIO :</Typography>
-                  <Box m={1}>
-                    <Typography>{user.biography}</Typography>
-                  </Box>
+                  <Typography>{user.biography}</Typography>
                 </Box>
               </Box>
-              <Divider />
-              <Box p={0} mt={2}>
-                <Box>
-                  <Typography className={classes.type2}>Tags :</Typography>
-                </Box>
-                <br />
-                <Box>
-                  {tags != null &&
-                    tags.map((item, index) => (
-                      <Chip
-                        key={index}
-                        className={classes.chip}
-                        label={item.value}
-                      />
-                    ))}
-                </Box>
+            </Box>
+            <Divider />
+            <Box p={0} mt={2}>
+              <Box>
+                <Typography className={classes.type2}>Tags :</Typography>
               </Box>
-            </Paper>
-          </Grid>
-          <Grid 
+              <br />
+              <Box>
+                {tags != null &&
+                  tags.map((item, index) => (
+                    <Chip
+                      key={index}
+                      className={classes.chip}
+                      label={item.value}
+                    />
+                  ))}
+              </Box>
+            </Box>
+          </Paper>
+        </Grid>
+        <Grid
           container
           // float="center"
           // alignItems="center"
@@ -331,72 +329,77 @@ const ViewProfile = (props) => {
           sm={8}
           xs={12}
           lg={8}
-          style={{
-          // padding: '2%',
-          // display: 'flex',
-          // flexWrap: 'wrap',
-          // justifyContent: 'center',
-          // overflow: 'hidden',
-          // backgroundColor: "#D3D3D3",
-          // // display: "flex",
-          // // flexDirection: "wrap",
-          // // maxWidth: "600px",
-          // borderTopRightRadius: "10px",
-          // borderBottomRightRadius: "10px",
-          // borderTopLeftRadius: "0px",
-          // borderBottomLeftRadius: "0px",
-          // border: "1px solid #D7D4D3",
-          // alignContent: "center",
-          // justifyContent: "center",
-        }}
+          style={
+            {
+              // padding: '2%',
+              // display: 'flex',
+              // flexWrap: 'wrap',
+              // justifyContent: 'center',
+              // overflow: 'hidden',
+              // backgroundColor: "#D3D3D3",
+              // // display: "flex",
+              // // flexDirection: "wrap",
+              // // maxWidth: "600px",
+              // borderTopRightRadius: "10px",
+              // borderBottomRightRadius: "10px",
+              // borderTopLeftRadius: "0px",
+              // borderBottomLeftRadius: "0px",
+              // border: "1px solid #D7D4D3",
+              // alignContent: "center",
+              // justifyContent: "center",
+            }
+          }
+        >
+          <Paper
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              overflow: "hidden",
+              background: "linear-gradient(140deg, #34ada4 15%, #0b777d 90%)",
+              display: "flex",
+              flexDirection: "wrap",
+              // maxWidth: "600px",
+              borderTopRightRadius: "10px",
+              borderBottomRightRadius: "10px",
+              borderTopLeftRadius: "0px",
+              borderBottomLeftRadius: "0px",
+              // border: "1px solid #D7D4D3",
+            }}
           >
-            <Paper width="100%" elevation={10} style={{width: "100%",           justifyContent: 'center',
-          overflow: 'hidden',
-          backgroundColor: "#34ada4",
-          // display: "flex",
-          // flexDirection: "wrap",
-          // maxWidth: "600px",
-          borderTopRightRadius: "10px",
-          borderBottomRightRadius: "10px",
-          borderTopLeftRadius: "0px",
-          borderBottomLeftRadius: "0px",
-          // border: "1px solid #D7D4D3",
-        }}>
-          {images.isImages &&
-            images.images.map((tile) => {
-              return (
-                <dev key={tile.id} style={{backgroundcolor: "red"}} >
-                  <img
-                    style={{
-                      width: "200px",
-                      height: "200px",
-                      borderRadius: "12px",
-                      margin: "5px",
-                      display: "flex",
-                      // flexDirection: "wrap",
-                      backgroundColor: "red"
-                    }}
-                    src={`http://localhost:3001/${tile.path}`}
-                    alt="photos"
-                  />
-                </dev>
-              );
-            })}
-            
+            {images.isImages &&
+              images.images.map((tile) => {
+                return (
+                  <Grid item sm={4} key={tile.id}>
+                    <img
+                      style={{
+                        width: "200px",
+                        height: "200px",
+                        borderRadius: "12px",
+                        margin: "5px",
+                        // display: "flex",
+                        // flexDirection: "wrap",
+                        // backgroundColor: "red"
+                      }}
+                      src={`http://localhost:3001/${tile.path}`}
+                      alt="photos"
+                    />
+                  </Grid>
+                );
+              })}
 
-          <Link to={"/AddPic"}>
-            <IconButton
-              style={{
-                display: "flex",
-                float: "left",
-                width: "200px",
-                height: "200px",
-              }}
-              alt="Edit profile"
-            >
-              <AddIcon />{" "}
-            </IconButton>
-          </Link>
+            <Link to={"/AddPic"}>
+              <IconButton
+                style={{
+                  display: "flex",
+                  float: "left",
+                  width: "200px",
+                  height: "200px",
+                }}
+                alt="Edit profile"
+              >
+                <AddIcon />{" "}
+              </IconButton>
+            </Link>
           </Paper>
         </Grid>
       </Grid>

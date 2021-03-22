@@ -166,7 +166,7 @@ const ProfileInfo = (props) => {
               rows='1'
             />
           </Grid>
-          {/* <Grid item xs={10}><EditLoc /></Grid> */}
+          <Grid item xs={10}><EditLoc /></Grid>
           <Grid item container justify='center' xs={3}>
             <Button onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
           </Grid>
