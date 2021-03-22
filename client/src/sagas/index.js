@@ -8,6 +8,7 @@ import stepSaga from './stepSaga';
 import picsSaga from './picsSaga';
 import editProfile from './profileSaga';
 import chatSaga from "./chatSaga";
+import usersSaga from "./usersSaga";
 
 
 export default function *ind() {
@@ -21,5 +22,6 @@ export default function *ind() {
     fork(picsSaga),
     fork(editProfile),
     fork(chatSaga),
+    fork(usersSaga),
   ]);
 }

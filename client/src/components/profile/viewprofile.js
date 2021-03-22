@@ -16,6 +16,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
 import {ResponsiveGridLayout } from 'react-grid-layout';
 import AddIcon from "@material-ui/icons/Add";
+import { Paper } from '@material-ui/core';
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottomLeftRadius: "10px",
     borderTopRightRadius: "0px",
     borderBottomRightRadius: "0px",
-    border: "1px solid #D7D4D3",
+    // border: "1px solid #D7D4D3",
   },
   cardMedia: {
     maxWidth: 200,
@@ -125,15 +126,18 @@ const ViewProfile = (props) => {
   const classes = useStyles();
   const rating = user.rating;
   return (
+    // <Box  boxShadow={10}>
     <Grid
       item
       xs={12}
       sm={12}
+      boxShadow={10}
       container
       alignItems="center"
       justify="center"
       style={{
-        marginTop:"7%"
+        boxShadow : "10px",
+        marginTop:"6%"
       }}
     >
        {/* <Grid
@@ -169,7 +173,7 @@ const ViewProfile = (props) => {
               // marginTop: "50%"
             }}
           >
-            <Card className={classes.card}>
+            <Paper elevation={10} className={classes.card}>
               <CardHeader
                 className={classes.cardHeader}
                 avatar={
@@ -317,7 +321,7 @@ const ViewProfile = (props) => {
                     ))}
                 </Box>
               </Box>
-            </Card>
+            </Paper>
           </Grid>
           <Grid 
           container
@@ -328,12 +332,27 @@ const ViewProfile = (props) => {
           xs={12}
           lg={8}
           style={{
-          padding: '2%',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
+          // padding: '2%',
+          // display: 'flex',
+          // flexWrap: 'wrap',
+          // justifyContent: 'center',
+          // overflow: 'hidden',
+          // backgroundColor: "#D3D3D3",
+          // // display: "flex",
+          // // flexDirection: "wrap",
+          // // maxWidth: "600px",
+          // borderTopRightRadius: "10px",
+          // borderBottomRightRadius: "10px",
+          // borderTopLeftRadius: "0px",
+          // borderBottomLeftRadius: "0px",
+          // border: "1px solid #D7D4D3",
+          // alignContent: "center",
+          // justifyContent: "center",
+        }}
+          >
+            <Paper width="100%" elevation={10} style={{width: "100%",           justifyContent: 'center',
           overflow: 'hidden',
-          backgroundColor: "#D3D3D3",
+          backgroundColor: "#34ada4",
           // display: "flex",
           // flexDirection: "wrap",
           // maxWidth: "600px",
@@ -341,16 +360,13 @@ const ViewProfile = (props) => {
           borderBottomRightRadius: "10px",
           borderTopLeftRadius: "0px",
           borderBottomLeftRadius: "0px",
-          border: "1px solid #D7D4D3",
-          // alignContent: "center",
-          // justifyContent: "center",
-        }}
-          >
+          // border: "1px solid #D7D4D3",
+        }}>
           {images.isImages &&
             images.images.map((tile) => {
               return (
                 <dev key={tile.id} style={{backgroundcolor: "red"}} >
-                  {/* <img
+                  <img
                     style={{
                       width: "200px",
                       height: "200px",
@@ -362,7 +378,7 @@ const ViewProfile = (props) => {
                     }}
                     src={`http://localhost:3001/${tile.path}`}
                     alt="photos"
-                  /> */}
+                  />
                 </dev>
               );
             })}
@@ -381,9 +397,11 @@ const ViewProfile = (props) => {
               <AddIcon />{" "}
             </IconButton>
           </Link>
+          </Paper>
         </Grid>
       </Grid>
     </Grid>
+    // </Box>
   );
 };
 export default ViewProfile;

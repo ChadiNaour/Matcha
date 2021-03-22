@@ -1,206 +1,191 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import Grid from '@material-ui/core/Grid';
-import ViewProfile from './viewProfile';
-import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import Select from 'react-select';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import * as Core from '@material-ui/core';
+import * as Icons from '@material-ui/icons';
+// import Navbar from './navbar';
+import Cards from "../Cards/index";
 
 const useStyles = makeStyles(theme => ({
-  root: {
+    card: {
+        border: '2px solid',
+        borderColor: '#0000',
+    },
+    rating:{
+        maxWidth: "300px",
+        marginRight: "30px",
+        marginLeft: "30px"
+    },
+    submit: {
+        // margin: theme.spacing(3, 0, 2),
+        width:250,
+        margin: "auto",
+        backgroundColor: "#11888e"
+      },
+      root: {
+        //   paddingLeft:"9%",
+        //   paddingTop:"0",
+        // display: 'flex',
+        // flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent : 'center',
+        // justifyContent: 'space-evently',
+        // overflow: 'hidden',
+        // backgroundColor: "#000000",
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    width:100,
-    backgroundColor: theme.palette.secondary.main
-  },
-  rating: {
-    maxWidth:400
-  },
-  margin: {
-    height: theme.spacing(3),
-  },
-  card:{
-    border: '2px solid',
-    borderColor: '#E6EAEA',
-  },
-  
+      },
+    slider:{
+        //backgroundColor:"#174f70",
+        color:"#174f70",
+    },
+    arrow:{
+        //backgroundColor:"#174f70",
+        color:"#11888e",
+    },
 }));
 
-export default function TitlebarGridList(props) {
-  const classes = useStyles();
-  const {selectTags,handle, users,handleSubmit,handleBlock,handleLike,handleDislike,
-        handleViewProfile,handleChangeAge,handleChangeLoc,handleChangeRating,
-        handleChangeTags,handleChangeNbrTags,age,nbrTags,loc,rating} = props;
-  const marks = [
-    {value: 0,label: '0'},{value: 0.5,label: '0.5'},{value: 1,label: '1'},{value: 1.5,label: '1.5'},
-    {value: 2,label: '2'},{value: 2.5,label: '2.5'},{value: 3,label: '3'},{value: 3.5,label: '3.5'},
-    {value: 4,label: '4'},{value: 4.5,label: '4.5'},{value: 5,label: '5'},
-  ];
-  const marksTags = [
-    {value: 0,label: '0'},{value: 1,label: '1'},{value: 2,label: '2'},
-    {value: 3,label: '3'},{value: 4,label: '4'},{value: 5,label: '5'}
-  ];
-  const customStyles = {
-    control: (base, state) => ({
-        ...base,
-        borderColor: state.isFocused ? "#3f51b5" : "#3f51b5",
-        boxShadow: state.isFocused ? null : null,
-      }),
-    menu: base => ({
-        ...base,
-        borderRadius: 0,
-        marginTop: 0,
-        backgroundColor: '#DBDFF',
-      }),
-    menuList: base => ({
-        ...base,
-        padding: 0,
-        height: '100px',
-        overflowY: 'scroll'
-      }),
-  };
+const Browse=() => {
+    const classes = useStyles();
+
+    // const images = [
+    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://images.pexels.com/photos/6401614/pexels-photo-6401614.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+    //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
+    //     "https://images.pexels.com/photos/6507482/pexels-photo-6507482.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //   ];
+
+    // const ratingmarks = [
+    //     {value: 0,label: '0'},{value: 0.5,label: '0.5'},{value: 1,label: '1'},{value: 1.5,label: '1.5'},
+    //     {value: 2,label: '2'},{value: 2.5,label: '2.5'},{value: 3,label: '3'},{value: 3.5,label: '3.5'},
+    //     {value: 4,label: '4'},{value: 4.5,label: '4.5'},{value: 5,label: '5'},
+    //   ];
 
     return (
-      <>
-      <Card className={classes.card}>
-        <CardHeader title="FILTER"  align="center"/>
-        <CardContent>
-          <Grid container item justify="center" spacing={2} xs={12}>
-            <Grid item xs={6} className={classes.rating}>
-              <div className={classes.margin} />
-              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-rating")}>
-                <KeyboardArrowDownIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("rating")}>
-                <ExpandLessIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Typography id="range-slider1" gutterBottom align="center">
-                Rating
-              </Typography>
-              <Slider
-                value={rating}
-                onChange={handleChangeRating}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                step={0.2}
-                marks={marks}
-                min={0}
-                max={5}
-              /> 
-            </Grid>
-
-            <Grid item xs={6} className={classes.rating}>
-              <div className={classes.margin} />
-              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-age")}>
-                <KeyboardArrowDownIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("age")}>
-                <ExpandLessIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Typography id="range-slider2" gutterBottom align="center">
-                Age
-              </Typography>
-              <Slider
-                value={age}
-                onChange={handleChangeAge}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                step={1}
-                min={18}
-                max={120}
-              />
-            </Grid>
-
-            <Grid item xs={6} className={classes.rating}>
-              <div className={classes.margin} />
-              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-distance")}>
-                <KeyboardArrowDownIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("distance")}>
-                <ExpandLessIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Typography id="range-slider3" gutterBottom align="center">
-                Localisation
-              </Typography>
-              <Slider
-                value={loc}
-                onChange={handleChangeLoc}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                step={1000}
-                min={0}
-                max={50000}
-              /> 
-            </Grid>
-
-            <Grid item xs={6} className={classes.rating}>
-              <div className={classes.margin} />
-              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-nbrTags")}>
-                <KeyboardArrowDownIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("nbrTags")}>
-                <ExpandLessIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Typography id="range-slider4" gutterBottom align="center">
-                Common tags
-              </Typography>
-              <Slider
-                value={nbrTags}
-                onChange={handleChangeNbrTags}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                step={1}
-                marks={marksTags}
-                min={0}
-                max={5}
-              /> 
-            </Grid>
-
-            <Grid item xs={6} className={classes.rating}>
-              <div className={classes.margin} />
-              <Typography id="range-slider5" gutterBottom align="center">
-                Tags
-              </Typography>
-              <Select
-                  isMulti
-                  isClearable={false}
-                  onChange={handleChangeTags}
-                  options={selectTags}
-                  styles={customStyles}
-              />
-            </Grid>
-          </Grid>
-        </CardContent>
-        <CardActions>
-        <Button type="submit" onClick={handleSubmit} color="primary" className={classes.submit} fullWidth variant="contained" >Send</Button>
-        </CardActions>
-      </Card>
-    <div className={classes.root}>
-          {users.isUsers === true && users.users && users.users.map(tile => (
-            <GridList key={tile.user.id}>
-              <ViewProfile key={tile.user.id}  user={tile.user} images={tile.images} tags={tile.tags}
-              handleBlock={handleBlock} handleLike={handleLike} handleViewProfile={handleViewProfile} handleDislike={handleDislike}/>
-            </GridList>
-          ))}
-          
-          {(users.isUsers === false || users.users === null || users.length === 0 )&& <p>No User Found</p>}
-      </div>
-    </>
-    );
+        <>
+        <Core.Card className={classes.card}>
+             <Core.CardContent>
+                <Core.Grid container item justify="center">
+                    <Core.Grid item xs={6} className={classes.rating}>
+                    <Core.Typography id="range-slider1" gutterBottom align="center">
+                        Rating
+                    </Core.Typography>
+                    <Core.Tooltip title ="DESC"><Core.IconButton>
+                        <Icons.KeyboardArrowDown className={classes.arrow}/>
+                    </Core.IconButton></Core.Tooltip>
+                    <Core.Tooltip title ="ASC"><Core.IconButton>
+                        <Icons.ExpandLess className={classes.arrow}/>
+                    </Core.IconButton></Core.Tooltip>
+                    <Core.Slider className={classes.slider}
+                        // value={rating}
+                        defaultValue={30}
+                        // onChange={handleChangeRating}
+                        valueLabelDisplay="auto"
+                        aria-labelledby="range-slider"
+                        step={0.2}
+                        // marks={ratingmarks}
+                        min={0}
+                        max={5}
+                    /> 
+                    </Core.Grid>
+                    <Core.Grid item xs={6} className={classes.rating}>
+                    <Core.Typography id="range-slider1" gutterBottom align="center">
+                        Age
+                    </Core.Typography>
+                    <Core.Tooltip title ="DESC"><Core.IconButton>
+                        <Icons.KeyboardArrowDown className={classes.arrow}/>
+                    </Core.IconButton></Core.Tooltip>
+                    <Core.Tooltip title ="ASC"><Core.IconButton>
+                        <Icons.ExpandLess  className={classes.arrow}/>
+                    </Core.IconButton></Core.Tooltip>
+                    <Core.Slider className={classes.slider}
+                        // value={rating}
+                        defaultValue={30}
+                        // onChange={handleChangeRating}
+                        valueLabelDisplay="auto"
+                        aria-labelledby="range-slider"
+                        step={1}
+                        // marks={marks}
+                        min={16}
+                        max={80}
+                    /> 
+                    </Core.Grid>
+                    <Core.Grid item xs={6} className={classes.rating}>
+                    <Core.Typography id="range-slider1" gutterBottom align="center">
+                        Localisation
+                    </Core.Typography>
+                    <Core.Tooltip title ="DESC"><Core.IconButton>
+                        <Icons.KeyboardArrowDown className={classes.arrow}/>
+                    </Core.IconButton></Core.Tooltip>
+                    <Core.Tooltip title ="ASC"><Core.IconButton>
+                        <Icons.ExpandLess  className={classes.arrow}/>
+                    </Core.IconButton></Core.Tooltip>
+                    <Core.Slider className={classes.slider}
+                        // value={rating}
+                        defaultValue={30}
+                        // onChange={handleChangeRating}
+                        valueLabelDisplay="auto"
+                        aria-labelledby="range-slider"
+                        step={100}
+                        // marks={marks}
+                        min={0}
+                        max={1000}
+                    /> 
+                    </Core.Grid>
+                    <Core.Grid item xs={6} className={classes.rating}>
+                    <Core.Typography id="range-slider1" gutterBottom align="center">
+                        Common tags
+                    </Core.Typography>
+                    <Core.Tooltip title ="DESC"><Core.IconButton>
+                        <Icons.KeyboardArrowDown className={classes.arrow}/>
+                    </Core.IconButton></Core.Tooltip>
+                    <Core.Tooltip title ="ASC"><Core.IconButton>
+                        <Icons.ExpandLess  className={classes.arrow}/>
+                    </Core.IconButton></Core.Tooltip>
+                    <Core.Slider className={classes.slider}
+                        // value={rating}
+                        defaultValue={30}
+                        // onChange={handleChangeRating}
+                        valueLabelDisplay="auto"
+                        aria-labelledby="range-slider"
+                        step={1}
+                        // marks={marks}
+                        min={0}
+                        max={5}
+                    /> 
+                    </Core.Grid>
+                </Core.Grid>
+             </Core.CardContent>
+             <Core.CardActions>
+                <Core.Button type="submit" color="primary" className={classes.submit} fullWidth variant="contained" >Filter</Core.Button>
+            </Core.CardActions>
+        </Core.Card>
+        <Core.Grid item sm={12} style={{ height: 50 }}></Core.Grid>
+        {/* <div className={classes.root}>
+                <div className={classes.root}>
+                  {images.map((img) => (<Cards image={img} />))}
+                </div>
+        </div> */}
+            </>
+    )
 }
+export default Browse;
