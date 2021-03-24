@@ -6,10 +6,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 // import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 // import Avatar from '@material-ui/core/Avatar';
 import { Grid} from '@material-ui/core';
+import Typography from "@material-ui/core/Typography";
 // import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
    root: {
+       justifyContent : "center",
+       alignContent : "center",
     width: '100%',
     maxWidth: 360,
     position: 'relative',
@@ -39,9 +42,9 @@ export default function Notif(props) {
                             src={`http://localhost:3001/images/${value.by.profilePic}`}
                         />
                     </ListItemAvatar> */}
-                    <ListItemText>{value.content}</ListItemText>
+                    <ListItemText><Typography>{value.content}</Typography></ListItemText>
                 </ListItem>
-            )) : <p>No notifications</p>}
+            )) : <Typography> No Notifications </Typography>}
         </List>
     </Grid>
     </>

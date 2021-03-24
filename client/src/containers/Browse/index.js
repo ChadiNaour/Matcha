@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Browser from "../../components/Browser";
-import { getUsers } from "../../actions/userAction";
+import { getUsers , sortUsers, likeUser, dislikeUser,blockUser,reportUser, viewProfileUser} from "../../actions/userAction";
 import { resetStateUsers } from "../../actions/resetStateAction";
+import MyModal from "../../components/commun/modal";
+import Cards from "../../components/Cards/index";
 
 const Browse = (props) => {
-  const {users, getUsers, route } = props;
+  const {users, getUsers, route, sortUsers, likeUser, dislikeUser, reportUser, blockUser, viewProfileUser} = props;
   // console.log(users);
 
   const [indice, setIndice] = useState(0);
+  const [sort, setSort] = useState(false);
   const [rating, setValueRating] = useState([0, 0]);
+  const [suggestion, setSuggestion] = useState(true);
   const [age, setValueAge] = useState([18, 18]);
   const [loc, setValueLoc] = useState([0, 0]);
+  const [methode, setMethode] = useState(null);
   const [nbrTags, setValueNbrTags] = useState([0, 0]);
   // // const route = router.location.pathname;
   // const [tags, setValuetags] = useState(null);
   const [state, setState] = useState({
+    open: false,
     user: null,
     images: null,
     tags: null,
@@ -67,12 +73,72 @@ const Browse = (props) => {
             resetStateUsers();
             return ;
         }
+    setSuggestion(false);
+    setSort(false);
     setIndice(0);
     getUsers(filtre,0);
     
 };
-  return <Browser users={users} handleChangeRating={handleChangeRating} handleChangeAge={handleChangeAge} handleChangeLoc={handleChangeLoc}
-  handleChangeNbrTags={handleChangeNbrTags} rating={rating} loc={loc}  age={age} nbrTags={nbrTags} handleSubmit={handleSubmit} /> 
+
+const handle = (methode) => {
+  setIndice(0);
+  setSort(true);
+  setSuggestion(false);
+  setMethode(methode);
+  sortUsers(methode,route,0);
+};
+
+const handleBlock = (blocked_user_id) => {
+  blockUser(blocked_user_id);
+  setState({
+      open: false,
+  });
+};
+
+const handleDislike= (dislike_user_id) =>{
+  dislikeUser(dislike_user_id);
+  setState({
+      open: false,
+  });
+};
+
+const handleLike = (liked_user_id) => {
+  likeUser(liked_user_id);
+  setState({
+      open: false,
+  });
+};
+const handleReport = (reported_user_id) => {
+  reportUser(reported_user_id);
+  setState({
+      open: false,
+  });
+};
+const handleViewProfile = (user,images,interests) => {
+  viewProfileUser(user.id);
+  setState({
+      open: true,
+      user: user,
+      images: images,
+      interests: interests,
+  });
+};
+const handleClose = () => {
+  setState({
+      open: false,
+  });
+};
+  return(
+    <div>
+            <Browser users={users} handleChangeRating={handleChangeRating} handleChangeAge={handleChangeAge} handleChangeLoc={handleChangeLoc} handleDislike={handleDislike}
+          handleChangeNbrTags={handleChangeNbrTags} handle={handle} handleLike={handleLike} rating={rating} loc={loc}  age={age} nbrTags={nbrTags} handleSubmit={handleSubmit}
+          handleBlock={handleBlock} handleReport={handleReport} handleViewProfile={handleViewProfile}/>
+
+          {state.open && <MyModal isOpen={state.open}  handleClose={handleClose}>
+          <div>hello</div>
+        </MyModal>}
+   </div>
+  )
   // users={users} handleChangeRating={handleChangeRating}
   // handleChangeAge={handleChangeAge} handleChangeLoc={handleChangeLoc} handleChangeNbrTags={handleChangeNbrTags} rating={rating}
   // handleChangeTags={handleChangeTags} loc={loc} nbrTags={nbrTags} age={age} handleSubmit={handleSubmit} />;
@@ -86,6 +152,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   "getUsers" : getUsers,
+  "sortUsers" : sortUsers,
+  "likeUser" : likeUser,
+  "dislikeUser" : dislikeUser,
+  "reportUser" : reportUser,
+  "viewProfileUser" : viewProfileUser,
+  "blockUser" : blockUser,
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Browse);

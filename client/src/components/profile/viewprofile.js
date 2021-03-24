@@ -39,16 +39,29 @@ const useStyles = makeStyles((theme) => ({
   //   boxShadow: 3,
   // },
   card: {
-    // minWidth: 300,
-    // maxWidth: 350,
-    // minHeight: 710,
-    // maxHeight: 850,
     height: "100%",
     borderTopLeftRadius: "10px",
     borderBottomLeftRadius: "10px",
     borderTopRightRadius: "0px",
     borderBottomRightRadius: "0px",
-    // border: "1px solid #D7D4D3",
+    [theme.breakpoints.down(425 + theme.spacing(3) * 2)]: {
+      justifyContent: "center",
+      borderTopLeftRadius: "10px",
+      borderBottomLeftRadius: "0px",
+      borderTopRightRadius: "10px",
+      borderBottomRightRadius: "0px",
+    },
+  },
+  greenpaper: {
+    padding: "20px",
+    [theme.breakpoints.down(425 + theme.spacing(3) * 2)]: {
+      justifyContent: "center",
+      height: "auto",
+      borderTopLeftRadius: "0px",
+      borderBottomLeftRadius: "10px",
+      borderTopRightRadius: "0px",
+      borderBottomRightRadius: "10px",
+    },
   },
   cardMedia: {
     maxWidth: 200,
@@ -119,12 +132,36 @@ const useStyles = makeStyles((theme) => ({
   type2: {
     ...theme.typography.username,
   },
+  secondpaper: {
+    background: "linear-gradient(140deg, #34ada4 15%, #0b777d 90%)",
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+    borderTopLeftRadius: "0px",
+    borderBottomLeftRadius: "0px",
+    [theme.breakpoints.down(425 + theme.spacing(3) * 2)]: {
+      justifyContent: "center",
+      height: "auto",
+      borderTopLeftRadius: "0px",
+      borderBottomLeftRadius: "10px",
+      borderTopRightRadius: "0px",
+      borderBottomRightRadius: "10px",
+    },
+  },
+  bigbox: {
+    borderRadius: "10px",
+    height: "750px",
+    [theme.breakpoints.down(425 + theme.spacing(3) * 2)]: {
+      justifyContent: "center",
+      margin: "5%"
+    },
+  }
 }));
 
 const ViewProfile = (props) => {
   const { user, images, tags } = props;
   const classes = useStyles();
   const rating = user.rating;
+  console.log(user)
   return (
     // <Box  boxShadow={10}>
     <Grid
@@ -136,6 +173,7 @@ const ViewProfile = (props) => {
       alignItems="center"
       justify="center"
       style={{
+        // backgroundColor : "red",
         boxShadow: "10px",
         marginTop: "6%",
       }}
@@ -152,17 +190,17 @@ const ViewProfile = (props) => {
           // marginTop:"7%"
         }} 
       > */}
-      <Grid
+      <Box
+        component={Grid}
         container
         sm={11}
         xs={12}
         md={11}
         lg={6}
-        // direction="row"
-        style={{
-          height: "750px",
-        }}
+        boxShadow={10}
+        className = {classes.bigbox}
       >
+        {/* <Box style={{height : "750px", width: "100%"}}> */}
         <Grid
           item
           sm={4}
@@ -173,6 +211,7 @@ const ViewProfile = (props) => {
             // marginTop: "50%"
           }}
         >
+          {/* <Box> */}
           <Paper className={classes.card}>
             <CardHeader
               className={classes.cardHeader}
@@ -214,6 +253,7 @@ const ViewProfile = (props) => {
                             style={{
                               width: "150px",
                               height: "150px",
+                              margin: "10px",
                               borderRadius: "100%",
                               border: "1px solid #D7D4D3",
                             }}
@@ -331,6 +371,14 @@ const ViewProfile = (props) => {
           lg={8}
           style={
             {
+              // justifyContent: 'center',
+              // alignItems: 'center',
+              // alignContent : 'center',
+              // justifyContent: 'space-evently',
+              // overflow: 'hidden',
+              // backgroundColor: "#000000",
+              // display: 'flex',
+              // flexWrap: 'wrap',
               // padding: '2%',
               // display: 'flex',
               // flexWrap: 'wrap',
@@ -350,59 +398,67 @@ const ViewProfile = (props) => {
             }
           }
         >
-          <Paper
-            style={{
-              width: "100%",
-              justifyContent: "center",
-              overflow: "hidden",
-              background: "linear-gradient(140deg, #34ada4 15%, #0b777d 90%)",
-              display: "flex",
-              flexDirection: "wrap",
-              // maxWidth: "600px",
-              borderTopRightRadius: "10px",
-              borderBottomRightRadius: "10px",
-              borderTopLeftRadius: "0px",
-              borderBottomLeftRadius: "0px",
-              // border: "1px solid #D7D4D3",
-            }}
-          >
-            {images.isImages &&
-              images.images.map((tile) => {
-                return (
-                  <Grid item sm={4} key={tile.id}>
+          <Paper className={classes.secondpaper}>
+            <Grid container xm={12} className={classes.greenpaper}>
+              {images.isImages &&
+                images.images.map((tile) => {
+                  return (
+                    // <Grid item sm={4} key={tile.id}>
                     <img
+                      key={tile.id}
                       style={{
                         width: "200px",
+                        // magrin : "10px",
                         height: "200px",
                         borderRadius: "12px",
                         margin: "5px",
                         // display: "flex",
                         // flexDirection: "wrap",
-                        // backgroundColor: "red"
+                        // backgroundColor: "red",
+                        // border: "1px solid red",
                       }}
                       src={`http://localhost:3001/${tile.path}`}
                       alt="photos"
                     />
-                  </Grid>
-                );
-              })}
+                    // </Grid>
+                  );
+                })}
 
-            <Link to={"/AddPic"}>
+              {/* <Link to={"/AddPic"} 
+             style={{
+              width: "200px",
+              // magrin : "10px",
+              height: "200px",
+              borderRadius: "12px",
+              margin: "5px",
+              // display: "flex",
+              // flexDirection: "wrap",
+              backgroundColor: "red",
+              border: "1px solid red",
+            }}> */}
+
               <IconButton
                 style={{
-                  display: "flex",
-                  float: "left",
                   width: "200px",
+                  // magrin : "10px",
                   height: "200px",
+                  borderRadius: "12px",
+                  margin: "5px",
+                  // display: "flex",
+                  // flexDirection: "wrap",
+                  // backgroundColor: "red",
+                  // border: "1px solid red",
                 }}
                 alt="Edit profile"
               >
-                <AddIcon />{" "}
+                <AddIcon />
               </IconButton>
-            </Link>
+              {/* </Link> */}
+            </Grid>
           </Paper>
         </Grid>
-      </Grid>
+        {/* </Box> */}
+      </Box>
     </Grid>
     // </Box>
   );

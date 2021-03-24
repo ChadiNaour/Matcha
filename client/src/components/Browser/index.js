@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
         // backgroundColor: "#000000",
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
       },
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 const Browse=(props) => {
     const classes = useStyles();
     const {users, handleChangeAge,handleChangeLoc,handleChangeRating
-        ,handleChangeNbrTags,age,nbrTags,loc,rating, handleSubmit} = props;
+        ,handleChangeNbrTags,age,nbrTags,loc,rating, handleSubmit, handle, handleLike, handleDislike, handleReport, handleBlock, handleViewProfile} = props;
 
     const marks = [
         {value: 0,label: '0'},{value: 0.5,label: '0.5'},{value: 1,label: '1'},{value: 1.5,label: '1.5'},
@@ -101,12 +101,12 @@ const Browse=(props) => {
                     <Core.Typography id="range-slider1" gutterBottom align="center">
                         Rating
                     </Core.Typography>
-                    {/* <Core.Tooltip title ="DESC"><Core.IconButton>
+                    <Core.Tooltip title ="DESC"><Core.IconButton  aria-label="View"  onClick={(e) => handle("-rating")}>
                         <Icons.KeyboardArrowDown className={classes.arrow}/>
                     </Core.IconButton></Core.Tooltip>
-                    <Core.Tooltip title ="ASC"><Core.IconButton>
+                    <Core.Tooltip title ="ASC"><Core.IconButton aria-label="View"  onClick={(e) => handle("rating")}>
                         <Icons.ExpandLess className={classes.arrow}/>
-                    </Core.IconButton></Core.Tooltip> */}
+                    </Core.IconButton></Core.Tooltip>
                     <Core.Slider className={classes.slider}
                         // value={rating}
                         value={rating}
@@ -125,12 +125,12 @@ const Browse=(props) => {
                     <Core.Typography id="range-slider1" gutterBottom align="center">
                         Age
                     </Core.Typography>
-                    {/* <Core.Tooltip title ="DESC"><Core.IconButton>
+                    <Core.Tooltip title ="DESC"><Core.IconButton aria-label="View"  onClick={(e) => handle("-age")}>
                         <Icons.KeyboardArrowDown className={classes.arrow}/>
                     </Core.IconButton></Core.Tooltip>
-                    <Core.Tooltip title ="ASC"><Core.IconButton>
+                    <Core.Tooltip title ="ASC"><Core.IconButton aria-label="View"  onClick={(e) => handle("age")}>
                         <Icons.ExpandLess  className={classes.arrow}/>
-                    </Core.IconButton></Core.Tooltip> */}
+                    </Core.IconButton></Core.Tooltip>
                     <Core.Slider className={classes.slider}
                         // value={rating}
                         value={age}
@@ -140,20 +140,20 @@ const Browse=(props) => {
                         aria-labelledby="range-slider"
                         step={1}
                         // marks={marks}
-                        min={16}
-                        max={80}
+                        min={18}
+                        max={120}
                     /> 
                     </Core.Grid>
                     <Core.Grid item xs={6} className={classes.rating}>
                     <Core.Typography id="range-slider1" gutterBottom align="center">
                         Localisation
                     </Core.Typography>
-                    {/* <Core.Tooltip title ="DESC"><Core.IconButton>
+                    <Core.Tooltip title ="DESC"><Core.IconButton aria-label="View"  onClick={(e) => handle("-distance")}>
                         <Icons.KeyboardArrowDown className={classes.arrow}/>
                     </Core.IconButton></Core.Tooltip>
-                    <Core.Tooltip title ="ASC"><Core.IconButton>
+                    <Core.Tooltip title ="ASC"><Core.IconButton aria-label="View"  onClick={(e) => handle("distance")}>
                         <Icons.ExpandLess  className={classes.arrow}/>
-                    </Core.IconButton></Core.Tooltip> */}
+                    </Core.IconButton></Core.Tooltip>
                     <Core.Slider className={classes.slider}
                         // value={rating}
                         value={loc}
@@ -161,7 +161,7 @@ const Browse=(props) => {
                         // onChange={handleChangeRating}
                         valueLabelDisplay="auto"
                         aria-labelledby="range-slider"
-                        step={100}
+                        step={50}
                         // marks={marks}
                         min={0}
                         max={1000}
@@ -171,12 +171,12 @@ const Browse=(props) => {
                     <Core.Typography id="range-slider1" gutterBottom align="center">
                         Common tags
                     </Core.Typography>
-                    {/* <Core.Tooltip title ="DESC"><Core.IconButton>
+                    <Core.Tooltip title ="DESC"><Core.IconButton aria-label="View"  onClick={(e) => handle("-nbrTags")}>
                         <Icons.KeyboardArrowDown className={classes.arrow}/>
                     </Core.IconButton></Core.Tooltip>
-                    <Core.Tooltip title ="ASC"><Core.IconButton>
+                    <Core.Tooltip title ="ASC"><Core.IconButton aria-label="View"  onClick={(e) => handle("nbrTags")}>
                         <Icons.ExpandLess  className={classes.arrow}/>
-                    </Core.IconButton></Core.Tooltip> */}
+                    </Core.IconButton></Core.Tooltip>
                     <Core.Slider className={classes.slider}
                         // value={rating}
                         value={nbrTags}
@@ -199,7 +199,7 @@ const Browse=(props) => {
         <Core.Grid item sm={12} style={{ height: 50 }}></Core.Grid>
         <div className={classes.root}>
                 <div className={classes.root}>
-                  {users.status === 'success' ? users.users.map((user, i) => (<Cards key={i} user={user} />)) : ''}
+                  {users.status === 'success' ? users.users.map((user, i) => (<Cards key={i} user={user}  handleLike={handleLike} handleDislike= {handleDislike} handleBlock={handleBlock} handleReport={handleReport} handleViewProfile={handleViewProfile}/>)) : ''}
                 </div>
         </div>
             </>

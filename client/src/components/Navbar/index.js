@@ -68,9 +68,10 @@ const useStyles = makeStyles((theme) => ({
   },
   username: {
       margin: "0px",
-    color: "#174F70",
+      padding : "0px",
+    // backgroundColor: "red",
     // margin: "0",
-    marginLeft: "0.5%",
+    // marginLeft: "0.5%",
     padding: "0px",
     fontSize: "20px",
   },
@@ -215,11 +216,11 @@ const Navbar = (props) => {
             {sidebarmenu.map((item) => (
               <Link
                 to={item.path}
-                style={{ textDecoration: "none", color: "#174F70" }}
+                style={{ textDecoration: "none", color: "#174F70", }}
                 key={item.text}
               >
                 <Core.ListItem button>
-                  <Core.ListItemIcon>{item.icon}</Core.ListItemIcon>
+                  <Core.ListItemIcon style={{color : "#118880"}}>{item.icon}</Core.ListItemIcon>
                   <Core.ListItemText primary={item.text} />
                 </Core.ListItem>
               </Link>

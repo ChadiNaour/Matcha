@@ -42,11 +42,12 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(0, 0, 1),
     justifyContent: 'center',
-    width: "90%",
+    width: "100%",
     borderRadius: theme.spacing(1),
-    textDecoration: 'none', backgroundColor: '#11888e',
+    textDecoration: 'none',
+    background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
     "&:hover": {
-      backgroundColor: '#07689f',
+      background: "linear-gradient(30deg, #0b777d 10%, #34ada4 90%)",
     }
   },
 
@@ -116,7 +117,7 @@ const Login = (props) => {
           
         </Grid>
         <div className={classes.marginee2}></div>
-        <Grid item xs={false} sm={false} md={6}>
+        <Grid item xs={false} sm={false} >
           <Container maxWidth="xs" >
             <CssBaseline />
             <div className={classes.marginee}></div>

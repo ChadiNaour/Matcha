@@ -37,13 +37,14 @@ const useStyles = makeStyles(theme => ({
 
   submit: {
     margin: theme.spacing(0, 0, 1),
-    backgroundColor: '#11888e',
+    // backgroundColor: '#11888e',
     justifyContent: 'center',
     width: "90%",
     borderRadius: theme.spacing(1),
     textDecoration: 'none',
+    background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
     "&:hover": {
-      backgroundColor: '#07689f'
+      background: "linear-gradient(30deg, #0b777d 10%, #34ada4 90%)",
     }
   },
 
