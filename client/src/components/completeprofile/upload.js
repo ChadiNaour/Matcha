@@ -104,9 +104,9 @@ const  Photos = (props) => {
           <div className={classes.root} style={{display: "flex", flexDirection: "wrap" }}>
               {images.isImages  && images.images.map((tile) => {
                 return (
-                  <div className={classes.machiroot} style={{display: "flex", flexDirection: "wrap" }}>
-                <GridList boxShadow={3} cellHeight={300} className={classes.gridList}>
-                  <GridListTile  key={tile.id} style={{width: "100%", height: "100%", margin : "10px"}}>
+                  <div  key={tile.id}className={classes.machiroot} style={{display: "flex", flexDirection: "wrap" }}>
+                <GridList cellHeight={300} className={classes.gridList}>
+                  <GridListTile   style={{width: "100%", height: "100%", margin : "10px"}}>
                     <img src={`http://localhost:3001/${tile.path}`} alt='photos' />
                     <GridListTileBar
                       actionPosition="left"

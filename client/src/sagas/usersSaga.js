@@ -7,7 +7,6 @@ import socket from '../socketConn';
 export const getUsers =
     function *getUsers (data) {
         try {
-            console.log('hna ta7l7k')
             const user = yield select(state => state.user);
             const token = yield select((state) => state.user.token);
             const response = yield call(request, {

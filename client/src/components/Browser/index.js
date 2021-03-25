@@ -4,6 +4,7 @@ import * as Core from '@material-ui/core';
 import * as Icons from '@material-ui/icons';
 // import Navbar from './navbar';
 import Cards from "../Cards/index";
+import Select from 'react-select';
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -51,7 +52,7 @@ const useStyles = makeStyles(theme => ({
 const Browse=(props) => {
     const classes = useStyles();
     const {users, handleChangeAge,handleChangeLoc,handleChangeRating
-        ,handleChangeNbrTags,age,nbrTags,loc,rating, handleSubmit, handle, handleLike, handleDislike, handleReport, handleBlock, handleViewProfile} = props;
+        ,handleChangeNbrTags,age,nbrTags,loc,rating, handleSubmit, handle, handleLike, handleDislike, handleReport, handleBlock, handleViewProfile, handleChangeTags, selectTags} = props;
 
     const marks = [
         {value: 0,label: '0'},{value: 0.5,label: '0.5'},{value: 1,label: '1'},{value: 1.5,label: '1.5'},
@@ -62,6 +63,25 @@ const Browse=(props) => {
         {value: 0,label: '0'},{value: 1,label: '1'},{value: 2,label: '2'},
         {value: 3,label: '3'},{value: 4,label: '4'},{value: 5,label: '5'}
       ];
+      const customStyles = {
+        control: (base, state) => ({
+            ...base,
+            borderColor: state.isFocused ? "#3f51b5" : "#3f51b5",
+            boxShadow: state.isFocused ? null : null,
+          }),
+        menu: base => ({
+            ...base,
+            borderRadius: 0,
+            marginTop: 0,
+            backgroundColor: '#DBDFF',
+          }),
+        menuList: base => ({
+            ...base,
+            padding: 0,
+            height: '100px',
+            overflowY: 'scroll'
+          }),
+      };
     // console.log(users.users)
     // const images = [
     //     "https://drscdn.500px.org/photo/435236/q%3D80_m%3D1500/v2?webp=true&sig=67031bdff6f582f3e027311e2074be452203ab637c0bd21d89128844becf8e40",
@@ -190,6 +210,19 @@ const Browse=(props) => {
                         max={5}
                     /> 
                     </Core.Grid>
+                    <Core.Grid item xs={6} className={classes.rating}>
+                        <div className={classes.margin} />
+                        <Core.Typography id="range-slider5" gutterBottom align="center">
+                            Tags
+                        </Core.Typography>
+                        <Select
+                            isMulti
+                            isClearable={false}
+                            onChange={handleChangeTags}
+                            options={selectTags}
+                            styles={customStyles}
+                        />
+                        </Core.Grid>
                 </Core.Grid>
              </Core.CardContent>
              <Core.CardActions>

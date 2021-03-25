@@ -45,7 +45,6 @@ const HomeContainer = (props) => {
         setValueNbrTags([0,0])
         setValuetags(null)
         setIndice(0);
-        console.log(route)
         if(route === '/browser')
             getUsers(null,0);    
         else if(route === '/search')
@@ -85,7 +84,7 @@ const HomeContainer = (props) => {
     };
     const handleSubmit = () => {
         if(arrayTags.length === 0 && nbrTags[0] === 0 && nbrTags[1] === 0 && rating[0] === 0 
-            && rating[1] === 0 && loc[0] === 0 && loc[1] === 0 && age[0] === 18  && age[1] === 18 && route === '/search')
+            && rating[1] === 0 && loc[0] === 0 && loc[1] === 0 && age[0] === 18  && age[1] === 18 )
             {
                 resetStateUsers();
                 return ;

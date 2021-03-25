@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   img: {
-    height: 220,
+    height: 290,
     display: "block",
     maxWidth: 300,
     overflow: "hidden",
@@ -36,7 +36,7 @@ export default function Cards(props) {
         className="card"
         style={{ backgroundSize: "cover", backgroundPosition: "center center" }}
       >
-        <Core.CardHeader
+        {/* <Core.CardHeader
           className="cardHeader"
           action={
             <Core.Box component="fieldset" borderColor="transparent">
@@ -67,16 +67,9 @@ export default function Cards(props) {
           }
           title={user.user.username}
           subheader={user.user.online === 1 ? "Online" : "Offline"}
-        ></Core.CardHeader>
+        ></Core.CardHeader> */}
 
-        <Core.CardMedia
-          style={{
-            display: "flex",
-            flexDirection: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          <SwipeableViews
+{/* <SwipeableViews
             axis={theme.direction === "rtl" ? "x-reverse" : "x"}
             index={activeStep}
             onChangeIndex={handleStepChange}
@@ -92,10 +85,35 @@ export default function Cards(props) {
                 ) : null}
               </div>
             ))}
-          </SwipeableViews>
+          </SwipeableViews> */}
+
+        <Core.CardMedia
+          style={{
+            display: "flex",
+            flexDirection: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {/* <SwipeableViews
+            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            index={activeStep}
+            onChangeIndex={handleStepChange}
+            enableMouseEvents
+          > */}
+            {user.images.map((step, index) => (
+              <div key={step.id}>
+                {step.isProfilePic && Math.abs(activeStep - index) <= 2 ? (
+                  <img
+                    className={classes.img}
+                    src={`http://localhost:3001/${step.path}`}
+                  />
+                ) : null}
+              </div>
+            ))}
+          {/* </SwipeableViews> */}
         </Core.CardMedia>
         <div className="cardContent">
-          <Core.Typography>Age : {user.user.age}</Core.Typography>
+          <Core.Typography>{user.user.username} , {user.user.age}</Core.Typography>
         </div>
         <div className="cardAction">
           {/* {console.log(user)} */}
@@ -127,10 +145,11 @@ export default function Cards(props) {
               <Icons.Block color="secondary" />
             </Core.IconButton>
           </Core.Tooltip>
-          <Core.Tooltip title ="Report"><Core.IconButton aria-label="Report"  onClick={(e) => handleReport(user.user.id)}>
+          {/* <Core.Tooltip title ="Report"><Core.IconButton aria-label="Report"  onClick={(e) => handleReport(user.user.id)}>
         <Icons.Report  color="secondary"/>
-        </Core.IconButton></Core.Tooltip>
-          <Core.Tooltip title ="Report"><Core.IconButton aria-label="Report"  onClick={(e) => handleViewProfile(user.user.id)}>
+        </Core.IconButton></Core.Tooltip> */}
+        {console.log(user)}
+          <Core.Tooltip title ="viewprofile"><Core.IconButton aria-label="Report"  onClick={(e) => handleViewProfile(user.user, user.images, user.tags)}>
         <VisibilityIcon  color="secondary"/>
         </Core.IconButton></Core.Tooltip>
         </div>

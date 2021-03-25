@@ -33,6 +33,7 @@ const deblockUser = require('../controllers/deblockUser');
 const blockUser = require('../controllers/blockUser');
 const getUsers = require('../controllers/getUsers');
 const sortUsers = require('../controllers/sortUsers');
+const delNotif = require('../controllers/notif/delNotif');
 
 router.post('/login', Login);
 router.post('/register', Register);
@@ -75,6 +76,7 @@ router.post('/reportUser',reportUser);
 router.post('/getLikeUser',getLikeUser);
 router.post('/getNotif', getNotif);
 router.post('/openNotif', openNotif);
+router.post('/delNotif', delNotif);
 router.post('/sortUsers', sortUsers);
 router.post('/setProfilePicture',setProfilePicture);
 router.post('/location', location);
