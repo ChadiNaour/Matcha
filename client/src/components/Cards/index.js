@@ -1,11 +1,12 @@
 import React from "react";
 import * as Core from "@material-ui/core";
 import * as Icons from "@material-ui/icons";
-import Rating from "@material-ui/lab/Rating";
 import "./Cards.css";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import SwipeableViews from 'react-swipeable-views';
+import { makeStyles } from '@material-ui/core/styles';
+// import SwipeableViews from 'react-swipeable-views';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import CancelIcon from '@material-ui/icons/Cancel';
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,14 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Cards(props) {
-  const { user, handleLike, handleDislike, handleReport, handleBlock, handleViewProfile} = props;
-  const rating = user.user.rating;
+  const { user, handleLike, handleDislike, handleBlock, handleViewProfile} = props;
   const classes = useStyles();
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
+
   return (
     
     <div className="container">
@@ -102,8 +98,9 @@ export default function Cards(props) {
           > */}
             {user.images.map((step, index) => (
               <div key={step.id}>
-                {step.isProfilePic && Math.abs(activeStep - index) <= 2 ? (
+                {step.isProfilePic ? (
                   <img
+                  alt="pic_user"
                     className={classes.img}
                     src={`http://localhost:3001/${step.path}`}
                   />
@@ -120,37 +117,36 @@ export default function Cards(props) {
         {user.user.like === null &&
           <Core.Tooltip title="Like" >
             <Core.IconButton aria-label="Like" onClick={(e) => handleLike(user.user.id)}>
-              <Icons.FavoriteBorder color="secondary" />
+              <Icons.FavoriteBorder style={{ color: '#0b777d' }} />
             </Core.IconButton>
           </Core.Tooltip>
           }
           {user.user.like === 'iLike' &&
           <Core.Tooltip title ="Unlike"><Core.IconButton aria-label="Unlike" onClick={(e) => handleDislike(user.user.id)}>
-            <Icons.Favorite  color="secondary"/>
+              <Icons.Favorite style={{ color: '#0b777d' }}/>
           </Core.IconButton></Core.Tooltip>
         }
         {user.user.like === 'heLiked' &&
           <Core.Tooltip title ="Like back"><Core.IconButton aria-label="Like back"  onClick={(e) => handleLike(user.user.id)}>
-            <Icons.SupervisedUserCircleOutlined color="primary"/>
+              <LoyaltyIcon  style={{ color: '#0b777d' }} />
           </Core.IconButton></Core.Tooltip>
         }
         {user.user.like === 'match' &&
           <Core.Tooltip title ="Unmatch"><Core.IconButton aria-label="Unmatch"  onClick={(e) => handleDislike(user.user.id)}>
-            <Icons.SupervisedUserCircleRounded color="primary"/>
+              <CancelIcon style={{ color: '#0b777d' }} />
           </Core.IconButton></Core.Tooltip>
         }
           
           <Core.Tooltip title="Block">
             <Core.IconButton aria-label="Block" onClick={(e) => handleBlock(user.user.id)}>
-              <Icons.Block color="secondary" />
+            <Icons.Block style={{ color: '#0b777d' }} />
             </Core.IconButton>
           </Core.Tooltip>
           {/* <Core.Tooltip title ="Report"><Core.IconButton aria-label="Report"  onClick={(e) => handleReport(user.user.id)}>
         <Icons.Report  color="secondary"/>
         </Core.IconButton></Core.Tooltip> */}
-        {console.log(user)}
           <Core.Tooltip title ="viewprofile"><Core.IconButton aria-label="Report"  onClick={(e) => handleViewProfile(user.user, user.images, user.tags)}>
-        <VisibilityIcon  color="secondary"/>
+        <VisibilityIcon style={{ color: '#0b777d' }}/>
         </Core.IconButton></Core.Tooltip>
         </div>
       </Core.Card>

@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
@@ -54,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   greenpaper: {
     padding: "20px",
+    width: "100%",
     [theme.breakpoints.down(425 + theme.spacing(3) * 2)]: {
       justifyContent: "center",
       height: "auto",
@@ -110,7 +110,8 @@ const useStyles = makeStyles((theme) => ({
   },
   pics: {
     height: "100%",
-    background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
+    width: "100%",
+    // background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
     // display: "flex",
     // flexDirection: "wrap",
     // maxWidth: "600px",
@@ -133,7 +134,8 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.username,
   },
   secondpaper: {
-    background: "linear-gradient(140deg, #34ada4 15%, #0b777d 90%)",
+    background: "linear-gradient(140deg, #34ada4 20%, #0b777d 80%)",
+    width : "100%",
     borderTopRightRadius: "10px",
     borderBottomRightRadius: "10px",
     borderTopLeftRadius: "0px",
@@ -167,7 +169,6 @@ const ViewProfile = (props) => {
       item
       xs={12}
       sm={12}
-      boxShadow={10}
       container
       alignItems="center"
       justify="center"
@@ -177,27 +178,16 @@ const ViewProfile = (props) => {
         marginTop: "6%",
       }}
     >
-      {/* <Grid
-        item
-        xs={12}
-        container
-        alignItems="center"
-        justify="center"
-        style={{
-          height: "750px",
-          backgroundColor: "green",
-          // marginTop:"7%"
-        }} 
-      > */}
       <Box
         component={Grid}
         container
+        item
         sm={11}
         xs={12}
         md={11}
         lg={6}
         boxShadow={10}
-        className = {classes.bigbox}
+        className={classes.bigbox}
       >
         {/* <Box style={{height : "750px", width: "100%"}}> */}
         <Grid
@@ -360,43 +350,7 @@ const ViewProfile = (props) => {
             </Box>
           </Paper>
         </Grid>
-        <Grid
-          container
-          // float="center"
-          // alignItems="center"
-          // justify="center"
-          sm={8}
-          xs={12}
-          lg={8}
-          style={
-            {
-              // justifyContent: 'center',
-              // alignItems: 'center',
-              // alignContent : 'center',
-              // justifyContent: 'space-evently',
-              // overflow: 'hidden',
-              // backgroundColor: "#000000",
-              // display: 'flex',
-              // flexWrap: 'wrap',
-              // padding: '2%',
-              // display: 'flex',
-              // flexWrap: 'wrap',
-              // justifyContent: 'center',
-              // overflow: 'hidden',
-              // backgroundColor: "#D3D3D3",
-              // // display: "flex",
-              // // flexDirection: "wrap",
-              // // maxWidth: "600px",
-              // borderTopRightRadius: "10px",
-              // borderBottomRightRadius: "10px",
-              // borderTopLeftRadius: "0px",
-              // borderBottomLeftRadius: "0px",
-              // border: "1px solid #D7D4D3",
-              // alignContent: "center",
-              // justifyContent: "center",
-            }
-          }
-        >
+        <Grid container item xs={12} sm={8} md={8}>
           <Paper className={classes.secondpaper}>
             <Grid container xm={12} className={classes.greenpaper}>
               {images.isImages &&
@@ -422,37 +376,24 @@ const ViewProfile = (props) => {
                     // </Grid>
                   );
                 })}
-
-              {/* <Link to={"/AddPic"} 
-             style={{
-              width: "200px",
-              // magrin : "10px",
-              height: "200px",
-              borderRadius: "12px",
-              margin: "5px",
-              // display: "flex",
-              // flexDirection: "wrap",
-              backgroundColor: "red",
-              border: "1px solid red",
-            }}> */}
-
-              <IconButton
-                style={{
-                  width: "200px",
-                  // magrin : "10px",
-                  height: "200px",
-                  borderRadius: "12px",
-                  margin: "5px",
-                  // display: "flex",
-                  // flexDirection: "wrap",
-                  // backgroundColor: "red",
-                  // border: "1px solid red",
-                }}
-                alt="Edit profile"
-              >
-                <AddIcon />
-              </IconButton>
-              {/* </Link> */}
+              <Link to={'/AddPic'}>
+                <IconButton
+                  style={{
+                    width: "200px",
+                    // magrin : "10px",
+                    height: "200px",
+                    borderRadius: "12px",
+                    margin: "5px",
+                    // display: "flex",
+                    // flexDirection: "wrap",
+                    // backgroundColor: "red",
+                    // border: "1px solid red",
+                  }}
+                  alt="Edit profile"
+                >
+                  <AddIcon />
+                </IconButton>
+              </Link>
             </Grid>
           </Paper>
         </Grid>

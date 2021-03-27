@@ -45,7 +45,8 @@ const Browse = (props) => {
     setValuetags(null);
     setIndice(0);
     getUsers(null, 0);
-}, [getUsers]);
+}, [getUsers,getTags]);
+
   const handleChangeRating = (e, newValue) => {
     setValueRating(newValue);
     return newValue;
@@ -67,6 +68,7 @@ const Browse = (props) => {
       && rating[1] === 0 && loc[0] === 0 && loc[1] === 0 && age[0] === 18  && age[1] === 18)
       {
             resetStateUsers();
+            getUsers(null,0);
             return ;
         }
     setSuggestion(false);
@@ -109,8 +111,18 @@ const handleChangeTags = (newValue) => {
   setValuetags(newValue);
   return newValue;
 };
+window.onscroll = function(ev) {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      
+      if(sort === true)
+          sortUsers(methode,'Browser',indice+1);
+      else if(suggestion === true)
+          getUsers(filtre,indice+1)    
+      setIndice(indice + 1);
+  }
+};
 const handleViewProfile = (user,images,tags) => {
-  // viewProfileUser(user.id);
+  viewProfileUser(user.id);
   setState({
       open: true,
       user: user,

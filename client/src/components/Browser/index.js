@@ -10,6 +10,7 @@ const useStyles = makeStyles(theme => ({
     card: {
         border: '2px solid',
         borderColor: '#0000',
+        // backgroundColor: "red"
     },
     rating:{
         maxWidth: "300px",
@@ -20,8 +21,11 @@ const useStyles = makeStyles(theme => ({
         // margin: theme.spacing(3, 0, 2),
         width:250,
         margin: "auto",
-        backgroundColor: "#11888e"
+        background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
+        "&:hover": {
+          background: "linear-gradient(30deg, #0b777d 10%, #34ada4 90%)",
       },
+    },
       root: {
         //   paddingLeft:"9%",
         //   paddingTop:"0",
@@ -47,6 +51,16 @@ const useStyles = makeStyles(theme => ({
         //backgroundColor:"#174f70",
         color:"#11888e",
     },
+    content: {
+        // backgroundColor: "red",
+        [theme.breakpoints.down(1024 + theme.spacing(3) * 2)]: {
+            // marginTop: theme.spacing(8),
+            // marginBottom: theme.spacing(6),
+            // padding: theme.spacing(3),
+            marginBottom : "70px"
+          },
+
+    }
 }));
 
 const Browse=(props) => {
@@ -66,7 +80,7 @@ const Browse=(props) => {
       const customStyles = {
         control: (base, state) => ({
             ...base,
-            borderColor: state.isFocused ? "#3f51b5" : "#3f51b5",
+            borderColor: state.isFocused ? "black" : "gray",
             boxShadow: state.isFocused ? null : null,
           }),
         menu: base => ({
@@ -78,7 +92,9 @@ const Browse=(props) => {
         menuList: base => ({
             ...base,
             padding: 0,
-            height: '100px',
+            height: '90px',
+            zIndex: '100',
+            backgroundColor: "white",
             overflowY: 'scroll'
           }),
       };
@@ -115,7 +131,7 @@ const Browse=(props) => {
     return (
         <>
         <Core.Card className={classes.card}>
-             <Core.CardContent>
+             <Core.CardContent className={classes.content}>
                 <Core.Grid container item justify="center" style={{marginTop: "2%"}}>
                     <Core.Grid item xs={6} className={classes.rating}>
                     <Core.Typography id="range-slider1" gutterBottom align="center">

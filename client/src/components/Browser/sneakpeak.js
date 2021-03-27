@@ -8,9 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Rating from '@material-ui/lab/Rating';
-import defaultImg from '../../image/default.jpg';
-import ReactIdSwiperCustom from 'react-id-swiper/lib/ReactIdSwiper.custom';
+import CancelIcon from '@material-ui/icons/Cancel';
 // import { Swiper, Navigation, Pagination } from 'swiper/js/swiper.esm';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -18,35 +16,39 @@ import BlockIcon from '@material-ui/icons/Block';
 import ReportIcon from '@material-ui/icons/Report';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import SupervisedUserCircleOutlinedIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
-import SupervisedUserCircleRoundedIcon from '@material-ui/icons/SupervisedUserCircleRounded';
 import Chip from '@material-ui/core/Chip';
 import SwipeableViews from 'react-swipeable-views';
+import GradeIcon from '@material-ui/icons/Grade';
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 620,
-    maxHeight: 800,
+    maxWidth: 420,
+    maxHeight: 900,
     borderRadius : '20px',
-   
    backgroundColor: '#E6EAEA'
   },
   cardMedia : {
-    maxWidth: 320,
-    maxHeight : 250,
-  },
-  cardHeader : {
-    maxWidth: 320,
-    maxHeight : 100,
+    display: "flex",
+    flexDirection: "wrap",
+    justifyContent: "center",
+    // maxWidth: 320,
+    // maxHeight : 250,
   },
   cardContent : {
-    maxWidth: 320,
-    maxHeight : 200,
+    //     display: "flex",
+    // flexDirection: "wrap",
+    // justifyContent: "center",
+    // maxWidth: 320,
+    // maxHeight : 200,
   },
   cardAction : {
-    marginTop: 5,
-    maxWidth: 320,
-    maxHeight : 50,
+        display: "flex",
+    flexDirection: "wrap",
+    justifyContent: "center",
+    marginTop: -15,
+    // maxWidth: 320,
+    // maxHeight : 50,
   },
   avatarON: {
     backgroundColor: '#00FB0C',
@@ -62,10 +64,10 @@ const useStyles = makeStyles(theme => ({
     marginRight: '5px',
   },
   img: {
-    border: "2px solid yellow",
-    height: 290,
+    // border: "2px solid yellow",
+    height: 300,
     display: "block",
-    maxWidth: 300,
+    Width: "100%",
     overflow: "hidden",
     width: "100%",
   },
@@ -73,7 +75,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function ViewProfile(props) {
   const {user,images,tags,handleBlock,handleLike,handleReport,handleDislike} = props;
-  console.log(user)
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -97,19 +98,15 @@ export default function ViewProfile(props) {
       // }
 
   return (
-    <Card  className={classes.card}>
+    <Card className={classes.card}>
       <CardHeader
       className={classes.cardHeader}
       action={ 
-        <Box component="fieldset" mb={3} borderColor="transparent">
-        <div className={classes.rating1}>
-          <Rating
-            name="read-only"
-            value={value}
-            precision={0.1}
-            readOnly
-          />
-        </div>
+        <Box style={{marginTop:'24px', marginRight:'15px'}}>
+          <GradeIcon/>
+          <Typography style={{marginTop:'-5px'}}>
+            {value}
+          </Typography>
         </Box>
         }
         avatar={
@@ -127,16 +124,12 @@ export default function ViewProfile(props) {
               )
             : null
         }
-        title={user.firstname +' ' + user.lastname + ' @'+user.username}
+        title={user.firstname +' ' + user.lastname  + ' @'+user.username}
         subheader={user.isOnline === 1 ? 'Online' : 'Last seen : ' + user.lastSignIn}
       >
       </CardHeader>
       <CardMedia
-          style={{
-            display: "flex",
-            flexDirection: "wrap",
-            justifyContent: "center",
-          }}
+      className = {classes.cardMedia}
         >
           <SwipeableViews
             axis={theme.direction === "rtl" ? "x-reverse" : "x"}
@@ -147,7 +140,7 @@ export default function ViewProfile(props) {
             {images.map((step, index) => (
               <div key={step.id}>
                 {Math.abs(activeStep - index) <= 2 ? (
-                  <img
+                  <img alt="pic"
                     className={classes.img}
                     src={`http://localhost:3001/${step.path}`}
                   />
@@ -162,7 +155,7 @@ export default function ViewProfile(props) {
           <strong>AGE : </strong>{user.age} 
         </Typography>
         <Typography >
-          <strong>GENDER : </strong>{user.gender}
+          <strong>GENDER : </strong>{user.gender} 
         </Typography>
         <Typography >
           <strong>INTERESTED IN : </strong>{user.Sexual_orientation}
@@ -187,12 +180,12 @@ export default function ViewProfile(props) {
         }
         {user.like === 'heLiked' &&
           <Tooltip title ="Like back"><IconButton aria-label="Like back"  onClick={(e) => handleLike(user.id)}>
-            <SupervisedUserCircleOutlinedIcon color="primary"/>
+              <LoyaltyIcon  color="secondary" />
           </IconButton></Tooltip>
         }
         {user.like === 'match' &&
           <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch"  onClick={(e) => handleDislike(user.id)}>
-            <SupervisedUserCircleRoundedIcon color="primary"/>
+            <CancelIcon color="secondary" />
           </IconButton></Tooltip>
         }
         <Tooltip title ="Block"><IconButton aria-label="Block"  onClick={(e) => handleBlock(user.id)}>
