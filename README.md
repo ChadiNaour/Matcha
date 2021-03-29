@@ -1,4 +1,5 @@
 # Matcha
+ A dating website - 1337 school (42 network) project.
 # Description
 A web app where users can interact with each other.
 The user can create his account, and after completing his profile he can search for other users by age, distance, rating, common tags.
