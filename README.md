@@ -50,3 +50,5 @@ cd client && serve -s build -l [PORT]
 <img width="2547" alt="Screen Shot 2021-03-29 at 4 18 34 PM" src="https://user-images.githubusercontent.com/52707617/112869029-9dbf3900-90b4-11eb-985b-d9b0105eb938.png">
 * CHAT
 <img width="2560" alt="Screen Shot 2021-03-29 at 4 45 15 PM" src="https://user-images.githubusercontent.com/52707617/112869035-9f88fc80-90b4-11eb-9544-1a3372716262.png">
+# Authors
+```CHADI NAOUR & ISSAM ZOUITEN```
