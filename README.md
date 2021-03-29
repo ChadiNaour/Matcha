@@ -33,7 +33,9 @@ cd server/database && and sh index.sh #to launch db migration with 500+ users
 cd server && npm run dev
 cd client && serve -s build -l [PORT]
 ```
+# screens
 
+register
 <img width="2557" alt="Screen Shot 2021-03-29 at 4 01 54 PM" src="https://user-images.githubusercontent.com/52707617/112868931-841df180-90b4-11eb-8e94-55139307dde8.png">
 <img width="2560" alt="Screen Shot 2021-03-29 at 4 04 27 PM" src="https://user-images.githubusercontent.com/52707617/112868950-897b3c00-90b4-11eb-89cd-dfe0fa084d06.png">
 <img width="2557" alt="Screen Shot 2021-03-29 at 4 07 18 PM" src="https://user-images.githubusercontent.com/52707617/112868973-9009b380-90b4-11eb-8aa3-fb2f425ab029.png">
