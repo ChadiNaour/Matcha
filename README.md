@@ -23,7 +23,7 @@ With the possibility to like, block or report fake accounts. Two matched users c
   * MYSQL
 
 # Prerequisites
-  node, npm
+  node, yarn
 
 # Running the app
 ```
