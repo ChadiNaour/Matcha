@@ -34,21 +34,20 @@ cd server && npm run dev
 cd client && serve -s build -l [PORT]
 ```
 # screens
-
+* LOGIN
+<img width="1680" alt="login" src="https://user-images.githubusercontent.com/52707617/190917683-24845359-4448-4226-9335-0407d502d317.png">
 * REGISTER
-<img width="2557" alt="Screen Shot 2021-03-29 at 4 01 54 PM" src="https://user-images.githubusercontent.com/52707617/112868931-841df180-90b4-11eb-8e94-55139307dde8.png">
-* COMPLETE PROFILE
-<img width="2560" alt="Screen Shot 2021-03-29 at 4 04 27 PM" src="https://user-images.githubusercontent.com/52707617/112868950-897b3c00-90b4-11eb-89cd-dfe0fa084d06.png">
-<img width="2557" alt="Screen Shot 2021-03-29 at 4 07 18 PM" src="https://user-images.githubusercontent.com/52707617/112868973-9009b380-90b4-11eb-8aa3-fb2f425ab029.png">
-<img width="2557" alt="Screen Shot 2021-03-29 at 4 07 33 PM" src="https://user-images.githubusercontent.com/52707617/112868981-91d37700-90b4-11eb-98d2-bfebc1c70acd.png">
-* ACTIVITY
-<img width="2555" alt="Screen Shot 2021-03-29 at 4 20 10 PM" src="https://user-images.githubusercontent.com/52707617/112868996-9730c180-90b4-11eb-92ed-3bd9c96905f0.png">
-* PROFILE
-<img width="2557" alt="Screen Shot 2021-03-29 at 4 11 59 PM" src="https://user-images.githubusercontent.com/52707617/112869007-9a2bb200-90b4-11eb-98bd-76bc67f9a091.png">
+<img width="1680" alt="register" src="https://user-images.githubusercontent.com/52707617/190917697-413ca7bf-d5ee-461f-8fc5-f50315287844.png">
 * BROWSE
-<img width="2539" alt="Screen Shot 2021-03-29 at 4 16 16 PM" src="https://user-images.githubusercontent.com/52707617/112869020-9bf57580-90b4-11eb-9162-c85b1400f480.png">
-<img width="2547" alt="Screen Shot 2021-03-29 at 4 18 34 PM" src="https://user-images.githubusercontent.com/52707617/112869029-9dbf3900-90b4-11eb-985b-d9b0105eb938.png">
+<img width="1667" alt="browse" src="https://user-images.githubusercontent.com/52707617/190917721-489c19d6-ed9e-48ea-8c3f-c06023ec8e13.png">
+<img width="1680" alt="Capture d’écran 2022-09-18 à 17 32 37" src="https://user-images.githubusercontent.com/52707617/190917910-92101397-bdb2-4f1a-891b-9c5ffdb82b46.png">
+* PROFILE
+<img width="1680" alt="profile" src="https://user-images.githubusercontent.com/52707617/190917773-f95e4312-510d-4d3b-b040-290355e499a6.png">
+* ACTIVITY
+<img width="1680" alt="Activity" src="https://user-images.githubusercontent.com/52707617/190917789-66eb667a-c917-47d2-91fa-5c9f453cfb45.png">
 * CHAT
-<img width="2560" alt="Screen Shot 2021-03-29 at 4 45 15 PM" src="https://user-images.githubusercontent.com/52707617/112869035-9f88fc80-90b4-11eb-9544-1a3372716262.png">
+<img width="1680" alt="chat" src="https://user-images.githubusercontent.com/52707617/190917804-80130b2e-4a88-4c2e-a7ae-90fe90c65dfc.png">
+* NOTIFICATION
+<img width="404" alt="Notif" src="https://user-images.githubusercontent.com/52707617/190917817-bb6f831f-4a27-47dd-aa04-05def0e1a8e7.png">
 # Authors
 ```CHADI NAOUR & ISSAM ZOUITEN```
